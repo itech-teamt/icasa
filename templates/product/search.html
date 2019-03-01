@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block center_body %}
+    <div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>All Categories</h1>
+				<span></span>
+				<ul class="subnav">
+					<li><a href="/list1_1_1/" class="iphone">iPhone</a></li>
+					<li><a href="/list2_1_1/" class="ipad">iPad</a></li>
+					<li><a href="#" class="mac">Mac</a></li>
+					<li><a href="#" class="watch">Watch</a></li>
+					<li><a href="#" class="accessories">Accessories</a></li>
+					<li><a href="#" class="other">Other</a></li>
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="{% url "product:index" %}">Home</a></li>
+				<li class="interval">|</li>
+				<li><a href="">News</a></li>
+				<li class="interval">|</li>
+				<li><a href="">Contact Us</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="breadcrumb">
+	</div>
+
+    <div class="main_wrap clearfix">
+        <ul class="goods_type_list clearfix">
+            {%  for item in page %}
+            <li>
+                <a href="/{{ item.id }}/"><img src="/static/{{ item.image }}/"></a>
+                <h4><a href="/{{ item.id }}/">{{ item.name }}</a></h4>
+                <div class="operate">
+                    <span class="prize">￥{{ item.price }}</span>
+                    <a href="/cart/add{{ item.id }}_1/" class="add_goods" title="加入购物车"></a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="pagenation">
+{#                if it has previous pages#}
+            {% if page.has_previous %}
+                <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ page.previous_page_number }}">Prev</a>
+            {% endif %}
+
+            {% for pindex in paginator.page_range %}
+                {% if pindex == page.number %}
+                    <a href="#" class="active">{{ pindex }}</a>
+                {% else %}
+                    <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ pindex }}">{{ pindex }}</a>
+                {% endif %}
+            {% endfor %}
+
+{#                if it has next page#}
+            {% if page.has_next %}
+                <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ page.next_page_number }}">Next></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock center_body %}

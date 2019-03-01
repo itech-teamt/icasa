@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block center_body %}
+
+    <div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>All Categories</h1>
+				<span></span>
+				<ul class="subnav">
+					<li><a href="/list1_1_1" class="iphone">iPhone</a></li>
+					<li><a href="/list2_1_1" class="ipad">iPad</a></li>
+					<li><a href="#" class="mac">Mac</a></li>
+					<li><a href="#" class="watch">Watch</a></li>
+					<li><a href="#" class="accessories">Accessories</a></li>
+					<li><a href="#" class="other">Other</a></li>
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="{% url "product:index" %}">Home</a></li>
+				<li class="interval">|</li>
+				<li><a href="">Best-sellers</a></li>
+				<li class="interval">|</li>
+				<li><a href="">Promotion</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="breadcrumb">
+		All Categories > {{ title }}
+		{% if id|default:' ' != ' ' %}
+        > Product Details
+		{% endif %}
+	</div>
+
+{% block center_content %}
+
+{% endblock center_content %}
+
+
+
+{% endblock center_body %}

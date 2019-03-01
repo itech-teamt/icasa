@@ -1,0 +1,80 @@
+{% extends 'product/base_p.html' %}
+
+{% block center_content %}
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>Newly Arrived</h3>
+				<ul>
+
+                    {% for goods in news %}
+
+                        <li>
+                            <a href="/{{ product.id }}"><img src="/static/{{ product.image }}"></a>
+    						<h4><a href="/{{ product.id }}">{{ product.name }}</a></h4>
+    						<div class="price">￥{{ product.price }}</div>
+                        </li>
+                    {% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<div class="sort_bar">
+                <a href="/list{{ category.id }}_1_1"
+                   {% if sort == '1' %}
+                    class="active"
+                   {% endif %}
+                    >Default</a>
+                <a href="/list{{ category.id }}_1_2"
+                   {% if sort == '2' %}
+                    class="active"
+                   {% endif %}
+                    >Price</a>
+                <a href="/list{{ category.id }}_1_3"
+                   {% if sort == '3' %}
+                    class="active"
+                   {% endif %}
+                    >Hot</a>
+			</div>
+
+			<ul class="goods_type_list clearfix">
+
+                {%  for g in page %}
+                <li>
+					<a href="/{{ g.id }}/"><img src="/static/{{ g.image }}/"></a>
+					<h4><a href="/{{ g.id }}/">{{ g.name }}</a></h4>
+					<div class="operate">
+						<span class="prize">￥{{ g.price }}</span>
+{#						<span class="unit">{{ g.gunit }}</span>#}
+						<a href="/cart/add{{ g.id }}_1/" class="add_goods" title="Add to Cart"></a>
+
+					</div>
+				</li>
+                {% endfor %}
+			</ul>
+
+			<div class="pagenation">
+{#                if it is the first page#}
+                {% if page.has_previous %}
+                    <a href="/list{{ category.id }}_{{ page.previous_page_number }}_{{ sort }}">Prev</a>
+                {% endif %}
+
+                {% for pindex in paginator.page_range %}
+                    {% if pindex == page.number %}
+                        <a href="/list{{ category.id }}_{{pindex}}_{{ sort }}" class="active">{{ pindex }}</a>
+                    {% else %}
+                        <a href="/list{{ category.id }}_{{pindex}}_{{ sort }}">{{ pindex }}</a>
+                    {% endif %}
+                {% endfor %}
+
+{#                it it has next page#}
+                {% if page.has_next %}
+				<a href="/list{{ category.id }}_{{ page.next_page_number }}_{{ sort }}">Next></a>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock center_content %}
