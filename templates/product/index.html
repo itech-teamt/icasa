@@ -22,12 +22,12 @@
 
 	<div class="center_con clearfix">
 		<ul class="subnav fl">
-			<li><a href="#model01" class="fruit">iPhone</a></li>
-			<li><a href="#model02" class="seafood">iPad</a></li>
-			<li><a href="#model03" class="meet">Mac</a></li>
-			<li><a href="#model04" class="egg">Watch</a></li>
-			<li><a href="#model05" class="vegetables">Accessories</a></li>
-			<li><a href="#model06" class="ice">Other</a></li>
+			<li><a href="#model01" class="iphone">iPhone</a></li>
+			<li><a href="#model02" class="ipad">iPad</a></li>
+			<li><a href="#model03" class="mac">Mac</a></li>
+			<li><a href="#model04" class="watch">Watch</a></li>
+			<li><a href="#model05" class="accessories">Accessories</a></li>
+			<li><a href="#model06" class="other">Other</a></li>
 		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
@@ -51,9 +51,8 @@
 			<h3 class="fl" id="model01">iPhone</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-                {% for g in cat01 %}
+                {% for g in cat0 %}
                     <a href="/{{ g.id }}/">{{  g.name|slice:'10' }}</a>
-{#                    这里建立一个点击量前四位的商品的链接#}
                 {%  endfor %}
 			</div>
 			<a href="/list1_1_1/" class="goods_more fr" id="fruit_more">See More ></a>
@@ -62,7 +61,7 @@
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>
 			<ul class="goods_list fl">
-                {% for product in cat0 %}
+                {% for product in cat01 %}
                 <li>
                     <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
                     <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
@@ -76,7 +75,7 @@
 		<div class="list_title clearfix">
 			<h3 class="fl" id="model02">iPad</h3>
 			<div class="subtitle fl">
-				<span>|</span>#}
+				<span>|</span>
                 {% for g in cat1 %}
                     <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
                 {% endfor %}
@@ -103,153 +102,101 @@
 			<h3 class="fl" id="model03">Mac</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+                {% for g in cat2 %}
+                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
+                {% endfor %}
 			</div>
-			<a href="#" class="goods_more fr">查看更多 ></a>
+			<a href="/list3_1_1/" class="goods_more fr">See More ></a>
 		</div>
 
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner03.jpg"></div>
 			<ul class="goods_list fl">
-				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+                {% for product in cat21 %}
+                <li>
+                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
+                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
+                    <div class="price"> $ {{ product.price }} </div>
+                </li>
+                {% endfor %}
 			</ul>
 		</div>
 	</div>
 
 	<div class="list_model">
 		<div class="list_title clearfix">
-			<h3 class="fl" id="model04">禽类蛋品</h3>
+			<h3 class="fl" id="model04">Watch</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+                {% for g in cat3 %}
+                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
+                {% endfor %}
 			</div>
-			<a href="#" class="goods_more fr">查看更多 ></a>
+			<a href="/list4_1_1/" class="goods_more fr">See More ></a>
 		</div>
 
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner04.jpg"></div>
 			<ul class="goods_list fl">
-				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+                {% for product in cat31 %}
+                <li>
+                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
+                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
+                    <div class="price"> $ {{ product.price }} </div>
+                </li>
+                {% endfor %}
 			</ul>
 		</div>
 	</div>
 
 	<div class="list_model">
 		<div class="list_title clearfix">
-			<h3 class="fl" id="model05">新鲜蔬菜</h3>
+			<h3 class="fl" id="model05">Accessories</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+                {% for g in cat4 %}
+                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
+                {% endfor %}
 			</div>
-			<a href="#" class="goods_more fr">查看更多 ></a>
+			<a href="/list5_1_1/" class="goods_more fr">See More ></a>
 		</div>
 
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner05.jpg"></div>
 			<ul class="goods_list fl">
-				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+                {% for product in cat41 %}
+                <li>
+                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
+                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
+                    <div class="price"> $ {{ product.price }} </div>
+                </li>
+                {% endfor %}
 			</ul>
 		</div>
 	</div>
 
 	<div class="list_model">
 		<div class="list_title clearfix">
-			<h3 class="fl" id="model06">速冻食品</h3>
+			<h3 class="fl" id="model06">Other</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+                {% for g in cat5 %}
+                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
+                {% endfor %}
 			</div>
-			<a href="#" class="goods_more fr">查看更多 ></a>
+			<a href="/list6_1_1/" class="goods_more fr">See More ></a>
 		</div>
 
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner06.jpg"></div>
 			<ul class="goods_list fl">
-				<li>
-					<h4><a href="#">维多利亚葡萄维多利亚葡萄维多利亚葡萄维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
-				<li>
-					<h4><a href="#">维多利亚葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods.jpg"></a>
-					<div class="prize">¥ 38.00</div>
-				</li>
+                {% for product in cat51 %}
+                <li>
+                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
+                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
+                    <div class="price"> $ {{ product.price }} </div>
+                </li>
+                {% endfor %}
 			</ul>
 		</div>
 	</div>

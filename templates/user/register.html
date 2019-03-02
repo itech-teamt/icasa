@@ -28,7 +28,7 @@
 	});
 
 	$('#allow').click(function() {
-		if($(this).is(':checked'))
+		if($(this).is('checked'))
 		{
 			error_check = false;
 			$(this).siblings('span').hide();
@@ -54,7 +54,7 @@
 		}
 		else
 		{
-			$.get('{% url "df_user:register_exist" %}?uname='+$('#user_name').val(),function(data){
+			$.get('{% url "user:register_exist" %}?username='+$('#user_name').val(),function(data){
                 if (data.count >= 1) {
                     $('#user_name').next().html('Username already exists').show();
                     error_name = true;
@@ -167,7 +167,7 @@
 					</li>
 					<li>
 						<label>confirm:</label>
-						<input type="password" name="confirm_pwd" id="confirm_pwd">
+						<input type="password" name="confirm_pwd" id="cpwd">
 						<span class="error_tip">message</span>
 					</li>
 					<li>
