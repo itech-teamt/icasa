@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^order/', include(('order.urls', 'order'), namespace='order')),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
