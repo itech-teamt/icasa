@@ -67,17 +67,17 @@ def login_handle(request):  # not an ajax submission
     password = request.POST.get('pwd')
     remember = request.POST.get('remember', 0)
     users = User.objects.filter(username=username)
-    if len(users) == 1:  # 判断用户密码并跳转
+    if len(users) == 1:
         s1 = sha1()
         s1.update(password.encode('utf8'))
         if s1.hexdigest() == users[0].password:
             url = request.COOKIES.get('url', '/')
-            red = HttpResponseRedirect(url)  # 继承与HttpResponse 在跳转的同时 设置一个cookie值
-            # 是否勾选记住用户名，设置cookie
+            red = HttpResponseRedirect(url)
+            # remember username or not
             if remember != 0:
                 red.set_cookie('username', username)
             else:
-                red.set_cookie('username', '', max_age=-1)  # 设置过期cookie时间，立刻过期
+                red.set_cookie('username', '', max_age=-1)
             request.session['user_id'] = users[0].id
             request.session['user_name'] = username
             return red

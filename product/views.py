@@ -6,6 +6,7 @@ from user.models import ProductBrowser
 from .models import Product, Category
 from user.decorator import login
 
+
 def index(request):
     # show 4 hottest and 4 latest products of each category
     caregorylist = Category.objects.all()
