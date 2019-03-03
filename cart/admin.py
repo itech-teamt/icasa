@@ -10,3 +10,4 @@ class CartInfoAdmin(admin.ModelAdmin):
     list_filter = ['user', 'product', 'count']
     search_fields = ['user_username', 'product__name']
     readonly_fields = ['user', 'product', 'count']
+# added
