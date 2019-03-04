@@ -44,9 +44,14 @@ INSTALLED_APPS = [
     'cart',
     'user',
     'order',
-
-    'social_django',
-
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    # 'social_django',
+    # 'werkzeug_debugger_runserver',
+    # 'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'ITECH_Project.urls'
@@ -74,8 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -146,9 +151,17 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-
+    # 'social_core.backends.facebook.FacebookOAuth2',
+    'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+SITE_ID = 1
+
+# LOGIN_URL = '/user/login'
+# LOGOUT_URL = '/user/logout'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = ''
+#
+# SOCIAL_AUTH_FACEBOOK_APP_ID = '2338256373071830'
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'e2777dd08b0da339f1f137e7a7891567'
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']

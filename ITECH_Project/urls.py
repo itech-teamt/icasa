@@ -24,5 +24,16 @@ urlpatterns = [
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^order/', include(('order.urls', 'order'), namespace='order')),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^accounts/', include('allauth.urls')),
+    # url(r'^auth/', include('social_django.urls', namespace='social')),
+    # url(r'^login/(?P<backend>[^/]+){0}$'.format(extra), views.auth,
+    #     name='begin'),
+    # # 回调URL
+    # url(r'^complete/(?P<backend>[^/]+){0}$'.format(extra), views.complete,
+    #     name='complete'),
+    # # disconnection
+    # url(r'^disconnect/(?P<backend>[^/]+){0}$'.format(extra), views.disconnect,
+    #     name='disconnect'),
+    # url(r'^disconnect/(?P<backend>[^/]+)/(?P<association_id>\d+){0}$'
+    #     .format(extra), views.disconnect, name='disconnect_individual'),
 ]
