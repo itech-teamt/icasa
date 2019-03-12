@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block center_body %}
+
+
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>My Account</h3>
+			<ul>
+                <li><a href="{% url "user:info" %}">· Personal Info</a></li>
+				<li><a href="{% url "user:order" 1 %}">· My Orders</a></li>
+				<li><a href="{% url "user:address" %}" class="active">· My Addresses</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+				<h3 class="common_title2">Recipient Address</h3>
+				<div class="site_con">
+					<dl>
+                        <dt>Recipient：{{ user.re_address }}</dt>
+                        <dt>Phone No：{{ user.phone }}</dt>
+                        <dt>Current Address：{{ user.address }}</dt>
+{#                        <a href="/user/place_order" style="display: block; width: 80px; height:30px; line-height: 30px; text-align: center;font-size: 13px; " class="info_submit">提交订单</a>#}
+					</dl>
+				</div>
+				<h3 class="common_title2">Edit Address</h3>
+				<div class="site_con">
+					<form action="{% url "user:address" %}" method="post">
+                        {% csrf_token %}
+						<div class="form_group">
+							<label>Recipient：</label>
+							<input type="text" name="re_address" value="{{ user.re_address }}">
+						</div>
+                        <div class="form_group">
+                            <label>Phone No：</label>
+                            <input type="text" name="phone" value="{{ user.phone }}">
+                        </div>
+                        <div class="form_group">
+                            <label>Zip Code：</label>
+                            <input type="text" name="zip" value="{{ user.zip }}">
+                        </div>
+                        <div class="form_group form_group2">
+                            <label>Detailed Address：</label>
+                            <textarea class="site_area" name="address" >{{ user.address }}</textarea>
+                        </div>
+						<input type="submit" name="" value="Edit Address" class="info_submit">
+					</form>
+				</div>
+		</div>
+	</div>
+
+
+{% endblock center_body %}

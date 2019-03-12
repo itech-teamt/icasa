@@ -4,7 +4,7 @@ from django.shortcuts import render
 from cart.models import Cart
 from user.models import ProductBrowser
 from .models import Product, Category
-from user.decorator import login
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -27,8 +27,8 @@ def index(request):
     cart_num = 0
 
     # if request.session.has_key('user_id'):
-    if 'user_id' in request.session:
-        user_id = request.session['user_id']
+    if not request.user.id is None:
+        user_id = request.user.id
         cart_num = Cart.objects.filter(user_id=int(user_id)).count()
 
     context = {
@@ -46,7 +46,7 @@ def index(request):
     return render(request, 'product/index.html', context)
 
 
-@login
+@login_required
 def product_list(request, cid, pindex, sort):
     # cid：category id;  pindex：page index; sort：method of sorting
     category = Category.objects.get(pk=int(cid))
@@ -57,10 +57,11 @@ def product_list(request, cid, pindex, sort):
     products_list = []
     # list-middle
     cart_num, guest_cart = 0, 0
-    user_id = request.session['user_id']
-    if user_id:
-        guest_cart = 1
-        cart_num = Cart.objects.filter(user_id=int(user_id)).count()
+    if 'user_id' in request.session:
+        user_id = request.session['user_id']
+        if user_id:
+            guest_cart = 1
+            cart_num = Cart.objects.filter(user_id=int(user_id)).count
 
     if sort == '1':  # sort by newest
         products_list = Product.objects.filter(category_id=int(cid)).order_by('-id')
@@ -103,8 +104,8 @@ def detail(request, pid):
     }
     response = render(request, 'product/detail.html', context)
 
-    if 'user_id' in request.session:
-        user_id = request.session["user_id"]
+    if not request.user.id is None:
+        user_id = request.user.id
         try:
             browsed_product = ProductBrowser.objects.get(user_id=int(user_id), product_id=int(product_id))
         except Exception:
@@ -125,12 +126,15 @@ def detail(request, pid):
 
 
 def cart_count(request):
-    if 'user_id' in request.session:
-        return Cart.objects.filter(user_id=request.session['user_id']).count
+    if not request.user.id is None:
+        return Cart.objects.filter(user_id=request.user.id).count()
+    # if 'user_id' in request.session:
+    #     return Cart.objects.filter(user_id=request.session['user_id']).count
     else:
         return 0
 
-@login
+
+@login_required
 def search(request):
 
     from django.db.models import Q
@@ -138,10 +142,10 @@ def search(request):
     pindex = request.GET.get('pindex', 1)
     search_status = True
     cart_num, guest_cart = 0, 0
-    user_id = request.session['user_id']
-    if user_id:
-        guest_cart = 1
-        cart_num = Cart.objects.filter(user_id=int(user_id)).count()
+    # user_id = request.session['user_id']
+    # if user_id:
+    #     guest_cart = 1
+    #     cart_num = Cart.objects.filter(user_id=int(user_id)).count()
 
     if search_keywords:
         products_list = Product.objects.filter(

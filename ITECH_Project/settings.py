@@ -158,6 +158,8 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'user.forms.SignupForm'
+LOGIN_REDIRECT_URL = '/user/profile/'
 # LOGIN_URL = '/user/login'
 # LOGOUT_URL = '/user/logout'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = ''
@@ -165,3 +167,4 @@ SITE_ID = 1
 # SOCIAL_AUTH_FACEBOOK_APP_ID = '2338256373071830'
 # SOCIAL_AUTH_FACEBOOK_SECRET = 'e2777dd08b0da339f1f137e7a7891567'
 # SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

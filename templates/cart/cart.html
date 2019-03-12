@@ -77,19 +77,19 @@
     });
     function cart_del(cart_id) {
             del = confirm('Confirm delete');
-{#            cart_id = $(this).parents('.cart_list_td').attr('id');#}
-{#            alert(cart_id);#}
+            {#cart_id = $(this).parents('.cart_list_td').attr('id');#}
+            {#alert(cart_id);#}
             if(del){
                 $.get('/cart/delete'+cart_id+'/',function (data) {
-{#                    alert(data.ok);#}
-                    if(data.ok==1){
-
-{#                        alert('删除');#}
+                    {#alert(data.ok);#}
+                    if(data.ok===1){
+{#                        alert('Delete');#}
                         $('ul').remove('#'+cart_id);
                         total();
                     }
                 })
             }
+            alert('Operation executed');
             window.location.reload();
         }
     function total(){
@@ -141,7 +141,6 @@
 	<div class="total_count">Total: <em>{{ carts|length }}</em>Product(s)</div>
 	<ul class="cart_list_th clearfix">
 		<li class="col01">Product name</li>
-{#		<li class="col02">Product unit</li>#}
 		<li class="col03">Price per item</li>
 		<li class="col04">Quantity</li>
 		<li class="col05">Subtotal</li>

@@ -21,7 +21,6 @@ class Product(models.Model):
     name = models.CharField(max_length=20, verbose_name="Product name", unique=True)
     image = models.ImageField(upload_to='product', verbose_name="product image path")
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Product price")
-#   weight = models.CharField(max_length=20, default='500g', verbose_name="product ")
     click = models.IntegerField(default=0, verbose_name="the number of clicks of a product")
     description = models.CharField(max_length=200, verbose_name="product description")
     stock = models.IntegerField(verbose_name="products in stock")
