@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
@@ -24,4 +25,4 @@ urlpatterns = [
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^order/', include(('order.urls', 'order'), namespace='order')),
     url(r'^tinymce/', include('tinymce.urls')),
-]
+    ]

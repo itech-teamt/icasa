@@ -1,7 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
 
-
 class Category(models.Model):
     # categories of products
     isDelete = models.BooleanField(default=False)
@@ -17,6 +16,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     # the class for products
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="product category")
     isDelete = models.BooleanField(default=False)
     name = models.CharField(max_length=20, verbose_name="Product name", unique=True)
     image = models.ImageField(upload_to='product', verbose_name="product image path")
@@ -26,7 +26,6 @@ class Product(models.Model):
     description = models.CharField(max_length=200, verbose_name="product description")
     stock = models.IntegerField(verbose_name="products in stock")
     detail = HTMLField(max_length=200, verbose_name="product details")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="product category")
     # adv = models.BooleanField(default=False) # we recommend or not
 
     class Meta:
