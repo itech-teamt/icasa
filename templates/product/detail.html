@@ -1,9 +1,9 @@
 {% extends 'product/base_p.html' %}
-
+{% load staticfiles %}
 {% block head %}
     <script type="text/javascript">
 
-{#  make total price arise automatically#}
+{#  make total price change automatically#}
     function plus() {
         num = parseFloat($('.num_show').val());
         $('.num_show').val(num+1);
@@ -27,16 +27,16 @@
              {
                  num = 1;
              }
-             kucun = parseInt($('.goods_kucun').text());
-             if(num>=kucun)
+             stock = parseInt($('.product_stock').text());
+             if(num>=stock)
              {
-                 num = kucun;
+                 num = stock;
              }
-             price = parseFloat($('#gprice').text());
+             price = parseFloat($('#price').text());
              total = num*price;
              $('.num_show').val(num);
              $('#gtotal').text('$' +total.toFixed(2));
-{#             $('add_cart').attr('href', '/cart/add'+$('gid').val())#}
+             {#$('add_cart').attr('href', '/cart/add'+$('id').val())#}
 
         });
     });
@@ -52,7 +52,7 @@
 			<h3>{{ product.name }}</h3>
 			<p>{{ product.description }}</p>
 			<div class="prize_bar">
-				<span class="show_price">¥<em id="gprice">{{ product.price }}</em></span>
+				<span class="show_price">$<em id="price">{{ product.price }}</em></span>
 				<span class="show_stock">Stock：<span class="goods_stock">{{ product.stock }}</span></span>
 			</div>
 			<div class="goods_num clearfix">
@@ -63,17 +63,17 @@
 					<a href="javascript:minus();" class="minus fr">-</a>
 				</div> 
 			</div>
-			<div class="total">Total Price：<em id="gtotal">{{ product.price }}元</em></div>
+			<div class="total">Total Price： $<em id="gtotal">{{ product.price }}</em></div>
 			<div class="operate_btn">
-                {% if request.session.user_name|default:'' != '' %}
+                {% if user.is_authenticated %}
                     <a href="javascript:;" class="buy_btn">Buy it!</a>
                 {% else %}
-                    <a href="{% url "user:login" %}" class="buy_btn">Buy it!</a>
+                    <a href="{% url "account_login" %}" class="buy_btn">Buy it!</a>
                 {% endif %}
-                {% if request.session.user_name|default:'' != '' %}
+                {% if user.is_authenticated %}
                     <a href="javascript:;" class="add_cart" id="add_cart">Add to Cart</a>
                 {% else %}
-                    <a href="{% url "user:login" %}" class="add_cart" id="add_cart">Add to Cart</a>
+                    <a href="{% url "account_login" %}" class="add_cart" id="add_cart">Add to Cart</a>
                 {% endif %}
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 					<li>
 						<a href="/{{ product.id }}"><img src="/static/{{ product.image }}"></a>
 						<h4><a href="#">{{ product.name }}</a></h4>
-						<div class="prize">￥{{ product.price }}</div>
+						<div class="prize">${{ product.price }}</div>
 					</li>
                     {%  endfor %}
                 </ul>
@@ -113,7 +113,6 @@
 
 	<div class="add_jump"></div>
 
-	<script type="text/javascript" src="/js/jquery-1.12.2.js"></script>
 	<script type="text/javascript">
 		var $add_x = $('#add_cart').offset().top;
 		var $add_y = $('#add_cart').offset().left;
@@ -126,31 +125,30 @@
 
             if ($('.login_btn').text().indexOf('Login') >= 0) {
                 alert('Please log in first');
-                location.href('/user/login/');
+                location.href('/accounts/login/');
                 return;
 
             }
-            {#            add animation#}
+            {# add animation#}
             $(".add_jump").stop().animate({
                     'left': $to_y + 7,
                     'top': $to_x + 7
                 },
                 "fast", function () {
                     $(".add_jump").fadeOut('fast', function () {
-{#                            count = $('.num_show').val();#}
-{#                            alert(count);#}
-{#                            $('#show_count').html(count);#}
+                            count = $('.num_show').val();
+                            {#alert(count);#}
+                            $('#show_count').html(count);
                 });
 
             });
             num = parseInt($('.num_show').val());
-            $.get('/cart/add{{ goods.id }}_'+num+'/',function (data) {
+            $.get('/cart/add{{ product.id }}_'+num+'/',function (data) {
                 $('#show_count').text(data.count);
             });
-
         });
 		$.get('/cart/',function (data) {
-{#                alert('data.count');#}
+                {#alert(data.count);#}
                 $('#show_count').text(data.count);
             });
 	</script>

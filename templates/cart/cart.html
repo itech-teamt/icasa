@@ -77,19 +77,20 @@
     });
     function cart_del(cart_id) {
             del = confirm('Confirm delete');
-{#            cart_id = $(this).parents('.cart_list_td').attr('id');#}
-{#            alert(cart_id);#}
+            {#cart_id = $(this).parents('.cart_list_td').attr('id');#}
+            {#alert(cart_id);#}
             if(del){
                 $.get('/cart/delete'+cart_id+'/',function (data) {
-{#                    alert(data.ok);#}
-                    if(data.ok==1){
-
-{#                        alert('删除');#}
+                    {#alert(data.ok);#}
+                    if(data.ok===1){
+{#                        alert('Delete');#}
                         $('ul').remove('#'+cart_id);
                         total();
                     }
                 })
             }
+            alert('Operation executed');
+            window.location.reload();
         }
     function total(){
         total1=0;
@@ -129,7 +130,7 @@
         //delete the & at the end
 
         s=s.substring(0,s.length-1);
-        alert(s);
+        {#alert(s);#}
         location.href = '/order?'+s ;
 
         }
@@ -140,7 +141,6 @@
 	<div class="total_count">Total: <em>{{ carts|length }}</em>Product(s)</div>
 	<ul class="cart_list_th clearfix">
 		<li class="col01">Product name</li>
-{#		<li class="col02">Product unit</li>#}
 		<li class="col03">Price per item</li>
 		<li class="col04">Quantity</li>
 		<li class="col05">Subtotal</li>
@@ -151,8 +151,6 @@
 	<ul class="cart_list_td clearfix" id="{{ cart.id }}">
 		<li class="col01"><input type="checkbox" name="" id="check_goods" checked="checked"></li>
 		<li class="col02"><img src="/static/{{ cart.product.image }}"></li>
-{#		<li class="col03">{{ cart.product.name }}<br><em>{{ cart.goods.gprice }}/{{ cart.goods.gunit }}</em><br><em>：<span id="goods_stock">{{ cart.goods.stock }}</span></em></li>#}
-{#		<li class="col04">{{ cart.goods.gunit }}</li>#}
 		<li class="col05">{{ cart.product.price }}</li>
 		<li class="col06">
 			<div class="num_add">
@@ -170,7 +168,11 @@
 		<li class="col01"><input type="checkbox" name="" checked="" id="check_all" href="javascript:;"></li>
 		<li class="col02">Select all</li>
 		<li class="col03">Total Price：<span>$</span><em id="total"></em><br>Total<b class="total_count1"></b>items</li>
+        {% if carts|length == 0 %}
+        <li class="col04"><a href="javascript:">Checkout</a></li>
+        {% else %}
 		<li class="col04"><a href="javascript:go_order()">Checkout</a></li>
+        {% endif %}
 	</ul>
 
 {% endblock center_body %}

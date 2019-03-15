@@ -2,12 +2,12 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, reverse
 
 from .models import *
-from user import decorator
+from django.contrib.auth.decorators import login_required
 
 
-@decorator.login
+@login_required
 def user_cart(request):
-    uid = request.session['user_id']
+    uid = request.user.id
     carts = Cart.objects.filter(user_id=uid)
     context = {
         'title': 'Cart',
@@ -15,16 +15,17 @@ def user_cart(request):
         'carts': carts
     }
     if request.is_ajax():
-        count = Cart.objects.filter(user_id=request.session['user_id']).count()
+        count = Cart.objects.filter(user_id=request.user.id).count()
 
         return JsonResponse({'count': count})
     else:
         return render(request, 'cart/cart.html', context)
 
 
-@decorator.login
+@login_required
 def add(request, gid, count):
-    uid = request.session['user_id']
+    uid = request.user.id
+    print(uid)
     gid, count = int(gid), int(count)
     # if the item is already in cart, we add the amount, otherwise we addi to cart
     carts = Cart.objects.filter(user_id=uid, product_id=gid)
@@ -39,14 +40,14 @@ def add(request, gid, count):
     cart.save()
     # if it is an ajax submission we return a json
     if request.is_ajax():
-        count = Cart.objects.filter(user_id=request.session['user_id']).count()
+        count = Cart.objects.filter(user_id=request.user.id).count()
 
         return JsonResponse({'count': count})
     else:
         return redirect(reverse("cart:cart"))
 
 
-@decorator.login
+@login_required
 def edit(request, cart_id, count):
     data = {}
     try:
@@ -59,7 +60,7 @@ def edit(request, cart_id, count):
     return JsonResponse(data)
 
 
-@decorator.login
+@login_required
 def delete(request, cart_id):
     data = {}
     try:

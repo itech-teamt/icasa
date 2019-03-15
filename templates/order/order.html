@@ -21,11 +21,10 @@
 		<dl>
 			<dt>Send to：</dt>
 			<span><input type="radio" name="" checked="checked"></span>
-            Current Address：<span class="user_info_check">{{ user.address }}</span>
-            Recipient：<span class="user_info_check">{{ user.re_address }} </span>
-            Phone No：<span class="user_info_check">{{ user.phone }}</span>
+            Current Address：<span class="user_info_check">{{ user.userprofile.address }}</span>
+            Phone No：<span class="user_info_check">{{ user.userprofile.phone }}</span>
 		</dl>
-		<a href="{% url "user:address" %}" class="edit_site">Edit Addresses</a>
+		<a href="{% url "user:profile_update" %}" class="edit_site">Edit Addresses</a>
 
 	</div>
 	
@@ -97,7 +96,7 @@
 		        text = $(this).text();
 		        if (text == ''){
 		            alert('Please enter a correct address');
-                    window.location.href = '{% url "user:address" %}';
+                    window.location.href = '{% url "user:profile_update" %}';
                 }
             });
 
@@ -110,7 +109,7 @@
 		    total = {{ total_trans_price }};
 		    data = {
 		            'cart_ids':cartids,
-                    'total':total,
+                    'total_price':total,
                     'csrfmiddlewaretoken':'{{ csrf_token }}'
 		    };
 
