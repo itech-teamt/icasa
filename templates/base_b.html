@@ -1,29 +1,199 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zxx">
+{% load staticfiles %}
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>{{ title }} | iCasa</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
-	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+
+    <title>Home</title>
+
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon"/>
+
+    <!--== Google Fonts ==-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700" rel="stylesheet">
+
+    <!--=== Bootstrap CSS ===-->
+    <link href="{% static 'assets/css/vendor/bootstrap.min.css' %}" rel="stylesheet">
+    <!--=== Font-Awesome CSS ===-->
+    <link href="{% static 'assets/css/vendor/font-awesome.css' %}" rel="stylesheet">
+    <!--=== Plugins CSS ===-->
+    <link href="{% static 'assets/css/plugins.css' %}" rel="stylesheet">
+    <!--=== Helper CSS ===-->
+    <link href="{% static 'assets/css/helper.min.css' %}" rel="stylesheet">
+    <!--=== Main Style CSS ===-->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <!-- Modernizer JS -->
+    <script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
 
     {% block head %}{% endblock head %}
 </head>
+
 <body>
 
-{% block body %}{% endblock body %}
 
-    <div class="footer no-mp">
-		<div class="foot_link">
-			<a href="https://github.com/itech-teamt/icasa">About Us</a>
-			<span>|</span>
-			<a href="https://github.com/itech-teamt/icasa">Contact Us</a>
+<!--== Start Header Section ==-->
+<header id="header-area">
+    <!-- Start PreHeader Area -->
+    {% block preheader %}
+    {% endblock %}
+    <!-- End PreHeader Area -->
 
-		</div>
-		<p>CopyRight © ITECH TeamT All Rights Reserved</p>
-		<p>Jing Xu 2352405X | Jinghua Yan 2409650Y</p>
-        <p>Jintao Wang 2359479W | Junjie Zhou 2371033Z</p>
-	</div>
+    <!-- Start Header Middle Area -->
+{% block headermiddle %}
+    <div class="header-middle-area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-4 col-md-2 col-xl-3 m-auto text-center text-lg-left">
+                    <a href="{% url 'product:index' %}" class="logo-wrap d-block">
+                        <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="img-fluid"/>
+                    </a>
+                </div>
+                <!-- Logo Area End -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <!-- End Header Middle Area -->
+{% block mainmenu %}
+{% endblock %}
+</header>
+{% block body %}
+    {% block content %}
+    {% endblock %}
+{% endblock body %}
+{% block brands %}
+{% endblock %}
 
+<!--== Start Newsletter Area ==-->
+<!--== End Newsletter Area ==-->
+
+<!--== Start Footer Area ==-->
+<footer id="footer-area">
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="footer-widget-content">
+                <div class="row">
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Contact Us</h3>
+                            <div class="widget-body">
+                                <div class="contact-info">
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-home"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Address:</strong> University of Glasgow
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Phone:</strong> (+44) 1234-567890
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Email:</strong> teamt@itech.it
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6 ">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Our Team</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><a href="#">Jinghua Yan</a></li>
+                                    <li><a href="#">Jintao Wang</a></li>
+                                    <li><a href="#">Jing Xu</a></li>
+                                    <li><a href="#">Junjie Zhou</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Bottom Area -->
+    <div class="footer-bttom-area">
+        <div class="container">
+            <div class="row">
+                <!-- Copyright Text Area -->
+                <div class="col-md-6 m-auto text-center text-md-left order-last order-md-first">
+                    <p>Copyright &copy; 2019.ITECH Team T All rights reserved.</p>
+                </div>
+                <!-- Copyright Text Area -->
+
+                <!-- Payment Method Area -->
+{#                <div class="col-md-6 m-auto text-center text-md-right">#}
+{#                    <div class="payment-support">#}
+{#                        <img src="{% static 'assets/img/payment.png' %}" alt="Payment" class="d-inline-block" />#}
+{#                    </div>#}
+{#                </div>#}
+                <!-- Payment Method Area -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom Area -->
+</footer>
+<!--== End Footer Area ==-->
+
+<!-- Scroll to Top Start -->
+<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
+<!-- Scroll to Top End -->
+
+<!--== Product Quick View Modal Area Wrap ==-->
+<!--== Product Quick View Modal Area End ==-->
+
+
+<!--=======================Javascript============================-->
+<!--=== Jquery Min Js ===-->
+<script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+<!--=== Jquery Migrate Min Js ===-->
+<script src="{% static 'assets/js/vendor/jquery-migrate-1.4.1.min.js' %}"></script>
+<!--=== Popper Min Js ===-->
+<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+<!--=== Bootstrap Min Js ===-->
+<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+<!--=== Ajax Mail Js ===-->
+<script src="{% static 'assets/js/ajax-mail.js' %}"></script>
+<!--=== Plugins Min Js ===-->
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+
+<!--=== Active Js ===-->
+<script src="{% static 'assets/js/active.js' %}"></script>
 </body>
 </html>

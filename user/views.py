@@ -5,51 +5,71 @@ from django.shortcuts import render, get_object_or_404
 # from django.core.paginator import Paginator
 from django.urls import reverse
 
-from order.models import Order
-from user.forms import ProfileForm
+from order.models import Order, OrderDetail
+from user.forms import ProfileForm, UserForm
 from .models import UserProfile
 # from order.models import *
 # from .models import ProductBrowser
 
 
+# @login_required
+# def profile(request):
+#     user = request.user
+#     if not hasattr(user, 'userprofile'):
+#         user_profile = UserProfile()
+#         user_profile.user = user
+#
+#     return render(request, 'account/profile.html', {'user': user})
+
+
 @login_required
-def profile(request):
+def myaccount(request):
     user = request.user
-    if not hasattr(user, 'userprofile'):
-        user_profile = UserProfile()
-        user_profile.user = user
 
-    return render(request, 'account/profile.html', {'user': user})
-
-
-@login_required
-def profile_update(request):
-    user = request.user
     if not hasattr(user, 'userprofile'):
         user_profile = UserProfile()
         user_profile.user = user
     else:
         user_profile = user.userprofile
 
+    default_data1 = {'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email}
+    default_data2 = {'phone': user_profile.phone, 'zip': user_profile.zip, 'address': user_profile.address, }
+
     if request.method == "POST":
-        form = ProfileForm(request.POST)
+        pform = ProfileForm(request.POST)
+        uform = UserForm(request.POST)
 
-        if form.is_valid():
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
+        if uform.is_valid():
+            user.first_name = uform.cleaned_data['first_name']
+            user.last_name = uform.cleaned_data['last_name']
+            user.email = uform.cleaned_data['email']
             user.save()
+            pform = ProfileForm(default_data2)
 
-            user_profile.phone = form.cleaned_data['phone']
-            user_profile.zip = form.cleaned_data['zip']
-            user_profile.address = form.cleaned_data['address']
+        if pform.is_valid():
+            user_profile.phone = pform.cleaned_data['phone']
+            user_profile.zip = pform.cleaned_data['zip']
+            user_profile.address = pform.cleaned_data['address']
             user_profile.save()
+            uform = UserForm(default_data1)
 
-            return HttpResponseRedirect(reverse('user:profile'))
+            return HttpResponseRedirect(reverse('user:myaccount'))
     else:
-        default_data = {'first_name': user.first_name, 'last_name': user.last_name, 'phone': user_profile.phone, 'zip': user_profile.zip, 'address':user_profile.address}
-        form = ProfileForm(default_data)
+        uform = UserForm(default_data1)
+        pform = ProfileForm(default_data2)
 
-    return render(request, 'account/profile_update.html', {'form': form, 'user': user})
+    user_id = request.user.id
+    orders_list = Order.objects.filter(user_id=int(user_id)).order_by('-date')
+    paginator = Paginator(orders_list, 3)
+    page = paginator.page(1)
+
+    context = {'uform': uform,
+               'pform': pform,
+               'user': user,
+               'paginator': paginator,
+               'page': page}
+
+    return render(request, 'account/profile.html/', context)
 
 
 # @login_required
@@ -76,20 +96,37 @@ def profile_update(request):
 #     return render(request, 'account/profile.html', context)
 #
 #
-@login_required
-def order(request, index):
-    user_id = request.user.id
-    orders_list = Order.objects.filter(user_id=int(user_id)).order_by('-date')
-    paginator = Paginator(orders_list, 2)
-    page = paginator.page(int(index))
-    context = {
-        'paginator': paginator,
-        'page': page,
-        # 'orders_list':orders_list,
-        'title': "My Account",
-        'page_name': 1,
-    }
-    return render(request, 'account/myorders.html', context)
+# @login_required
+# def order(request, index):
+#     user_id = request.user.id
+#     orders_list = Order.objects.filter(user_id=int(user_id)).order_by('-date')
+#     paginator = Paginator(orders_list, 2)
+#     page = paginator.page(int(index))
+#     context = {
+#         'paginator': paginator,
+#         'page': page,
+#         # 'orders_list':orders_list,
+#         'title': "My Account",
+#         'page_name': 1,
+#     }
+#     return render(request, 'account/profile.html', context)
+
+
+# @login_required
+# def order_detail(request, index):
+#     user_id = request.user.id
+#     orders_list = Order.objects.filter(user_id=int(user_id)).order_by('-date')
+#     order_id = orders_list[index]
+#     order_detail_list = OrderDetail.objects.filter(order_id=int(order_id))
+#     paginator = Paginator(order_detail_list, 2)
+#     page = paginator.page(1)
+#     context = {
+#         'paginator': paginator,
+#         'page': page,
+#         'title': "Order Detail",
+#         'page_name': 1,
+#     }
+#     return render(request, 'account/myorders.html', context)
 #
 #
 # @login_required

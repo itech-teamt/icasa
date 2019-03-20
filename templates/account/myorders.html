@@ -1,15 +1,39 @@
 {% extends 'base.html' %}
+{% block body %}
+    <div class="order-summary-details">
+        <h2>Order Detail</h2>
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
 
+                <tbody>
+                {% for order_detail in order.orderdetail_set.all %}
+                    <tr>
+                        <td><img src="/static/{{ order_detail.product.image }}"></td>
+                        <td>{{ order_detail.product.name }}</td>
+                        <td>${{ order_detail.product.price }}</td>
+                        <td>${{ order_detail.count }}</td>
+                        <td>${{ order.total_price }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
 {% block center_body %}
 
 	<div class="main_con clearfix">
 		<div class="left_menu_con clearfix">
 			<h3>My Account</h3>
-{#			<ul>#}
-{#				<li><a href="{% url "user:info" %}">· Personal Info</a></li>#}
-{#				<li><a href="{% url "user:order" 1 %}" class="active">· My Orders</a></li>#}
-{#				<li><a href="{% url "user:address" %}">· My Addresses</a></li>#}
-{#			</ul>#}
 		</div>
 		<div class="right_content clearfix">
 				<h3 class="common_title2">All orders</h3>
@@ -25,9 +49,9 @@
 						<tr>
 							<td width="55%">
                                 {% for order_detail in order.orderdetail_set.all %}
-								<ul class="order_goods_list clearfix">					
+								<ul class="order_product_list clearfix">
 									<li class="col01"><img src="/static/{{ order_detail.product.image }}"></li>
-                                    <li class="col02">{{ order_detail.product.name }}<em class="good_price">${{ order_detail.product.price }}</em>/<em>{{ order_detail.product.unit }}</em></li>
+                                    <li class="col02">{{ order_detail.product.name }}<em class="good_price">${{ order_detail.product.price }}</em></li>
 									<li class="col03">${{ order_detail.count }}</li>
 									<li class="col04">$11.80</li>
 								</ul>
@@ -66,7 +90,7 @@
     $(function () {
         $('.col04').each(function () {
             count = $(this).prev().text();
-            price = $(this).prev().prev().find('.good_price').text();
+            price = $(this).prev().prev().find('.product_price').text();
             $(this).html('$ '+parseFloat(count,2)*parseFloat(price,2));
             }
 

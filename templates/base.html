@@ -1,74 +1,400 @@
 {% extends 'base_b.html' %}
+{% load staticfiles %}
+
+    <!-- Start PreHeader Area -->
+{% block preheader %}
+    <div class="preheader-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-lg-6">
+                    <div class="preheader-contact-info d-flex align-items-center justify-content-between justify-content-md-start">
+                        <div class="single-contact-info">
+                            <a class="welcome-msg">
+                                <strong>Welcome to iCasa!</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-lg-6 mt-xs-10">
+                    {% if user.is_authenticated %}
+                    <div class="login_btn fl pull-right">Hi：<em>{{ user.last_name}} {{ user.first_name }}</em>
+                        <span>|</span>
+                        <em><a href="{% url "account_logout" %}">Logout</a></em>
+                        <em> | </em>
+                        <em><a href="{% url 'user:myaccount' %}">My Account</a></em>
+                    </div>
+                    {% else %}
+                    <div class="login_btn fl pull-right">
+                        <em><a href="{% url "account_login" %}">Login</a></em>
+                        <em> | </em>
+                        <em><a href="{% url "account_signup" %}">Sign up</a></em>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <!-- End PreHeader Area -->
+
+    <!-- Start Header Middle Area -->
+{% block headermiddle %}
+    <div class="header-middle-area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-4 col-md-2 col-xl-3 m-auto text-center text-lg-left">
+                    <a href="{% url 'product:index' %}" class="logo-wrap d-block">
+                        <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="img-fluid"/>
+                    </a>
+                </div>
+                <!-- Logo Area End -->
+
+                <!-- Search Box Area Start -->
+                <div class="col-8 col-md-7 col- m-auto ">
+                    <div class="search-box-wrap">
+                        <form class="search-form d-flex" action="#" method="get">
+                            <input type="search" name="search" placeholder="type and hit enter"/>
+                            <button class="btn btn-search"><img src="{% static 'assets/img/icons/icon-search.png' %}"
+                                                                alt="Search Icon"/>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Search Box Area End -->
+
+                <!-- Mini Cart Area Start -->
+                <div class="col-12 col-md-3 col-xl-2 m-auto text-center text-lg-right mt-xs-15">
+                    {% if guest_cart == 1 %}
+                    <div class="minicart-wrapper">
+                        <button class="btn btn-minicart" onclick="window.location.href='{% url "cart:cart" %}'">My Cart <sup id="show_count" class="cart-count" >{{ cart_num }}</sup></button>
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Mini Cart Area End -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <!-- End Header Middle Area -->
+
+    <!-- Start Main Menu Area -->
+{% block mainmenu %}
+    <div class="navigation-area" id="fixheader">
+        <div class="container">
+            <div class="row">
+                <!-- Categories List Start -->
+                <div class="col-10 col-lg-3">
+                    <div class="categories-list-wrap">
+                        <button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i> Categories
+                        </button>
+                        <ul class="category-list-menu">
+                            <li class="category-item-parent dropdown-show">
+                                <a href="#" class="category-item arrow-toggle">
+                                    <img src="{% static 'assets/img/icons/desktop.png' %}" alt="Computer"/>
+                                    <span>iPhone</span>
+                                </a>
+                                <ul class="mega-menu-wrap dropdown-nav">
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Laptop</a>
+                                        <ul>
+                                            <li><a href="#">Has Laptop Price</a></li>
+                                            <li><a href="#">Has Laptop Ram</a></li>
+                                            <li><a href="#">Has Laptop Rom</a></li>
+                                            <li><a href="#">Has Laptop SSD</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Desktop</a>
+                                        <ul>
+                                            <li><a href="#">Has Laptop Price</a></li>
+                                            <li><a href="#">Has Laptop Ram</a></li>
+                                            <li><a href="#">Has Laptop Rom</a></li>
+                                            <li><a href="#">Has Laptop SSD</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Notebook</a>
+                                        <ul>
+                                            <li><a href="#">Has Laptop Price</a></li>
+                                            <li><a href="#">Has Laptop Ram</a></li>
+                                            <li><a href="#">Has Laptop Rom</a></li>
+                                            <li><a href="#">Has Laptop SSD</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="category-item-parent dropdown-show">
+                                <a href="#" class="category-item arrow-toggle">
+                                    <img src="{% static 'assets/img/icons/mobile.png' %}" alt="Mobile"/>
+                                    <span>iPad</span>
+                                </a>
+                                <ul class="mega-menu-wrap dropdown-nav">
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Sumsang</a>
+                                        <ul>
+                                            <li><a href="#">Sumsang S6</a></li>
+                                            <li><a href="#">Sumsang S7</a></li>
+                                            <li><a href="#">Sumsang Prime</a></li>
+                                            <li><a href="#">Sumsang A6</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Ziaomi</a>
+                                        <ul>
+                                            <li><a href="#">Ziaomi A2 Pro</a></li>
+                                            <li><a href="#">Ziaomi MIX 2</a></li>
+                                            <li><a href="#">Ziaomi F1</a></li>
+                                            <li><a href="#">Ziaomi Prime</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Jamila</a>
+                                        <ul>
+                                            <li><a href="#">Jamila G100</a></li>
+                                            <li><a href="#">Jamila i120</a></li>
+                                            <li><a href="#">Jamila i15</a></li>
+                                            <li><a href="#">Jamila L62</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Nakoa</a>
+                                        <ul>
+                                            <li><a href="#">Nakoa Lamia 820</a></li>
+                                            <li><a href="#">Nakoa 888 Pro</a></li>
+                                            <li><a href="#">Nakoa 81 Sirocco</a></li>
+                                            <li><a href="#">Nakoa Lamia 1520</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="category-item-parent">
+                                <a href="#" class="category-item">
+                                    <img src="{% static 'assets/img/icons/camera.png' %}" alt="Camera"/>
+                                    <span>Mac</span>
+                                </a>
+                            </li>
+                            <li class="category-item-parent">
+                                <a href="#" class="category-item">
+                                    <img src="{% static 'assets/img/icons/fan.png' %}" alt="Camera"/>
+                                    <span>Watch</span>
+                                </a>
+                            </li>
+                            <li class="category-item-parent">
+                                <a href="#" class="category-item">
+                                    <img src="{% static 'assets/img/icons/games.png' %}" alt="Camera"/>
+                                    <span>Accessories</span>
+                                </a>
+                            </li>
+                            <li class="category-item-parent">
+                                <a href="#" class="category-item">
+                                    <img src="{% static 'assets/img/icons/tv.png' %}" alt="Camera"/>
+                                    <span>Other</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Categories List End -->
+
+                <!-- Main Menu Start -->
+                <div class="col-2 col-lg-9 d-none d-lg-block">
+                    <div class="main-menu-wrap">
+                        <nav class="mainmenu">
+                            <ul class="main-navbar clearfix">
+                                <li><a href="{% url 'product:index' %}">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Main Menu End -->
+            </div>
+        </div>
+    </div>
+    <!-- End Main Menu Area -->
+{% endblock %}
+</header>
 
 {% block body %}
 
-    <div class="header_con">
-		<div class="header">
-			<div class="welcome fl">Welcome to iCasa!</div>
-			<div class="fr">
-
-                {% if user.is_authenticated %}
-				<div class="login_btn fl">Hi：<em>{{ user.username }}</em>
-                    <span>|</span>
-                    <em><a href="{% url "account_logout" %}">Logout</a></em>
-                    <em><a href="{% url 'user:profile' %}">My Account</a></em>
-				</div>
-                {% else %}
-				<div class="login_btn fl">
-					<a href="{% url "account_login" %}">Login</a>
-					<span>|</span>
-					<a href="{% url "account_signup" %}">Sign up</a>
-				</div>
-                {% endif %}
-{#				<div class="user_link fl">#}
-{#					<span>|</span>#}
-
-{#					<span>|</span>#}
-{#					<a href="{% url "cart:cart" %}">Cart</a>#}
-{#					<span>|</span>#}
-{#					<a href="{% url "user:order" 1 %}">Order</a>#}
-{#				</div>#}
-			</div>
-		</div>
-	</div>
-
-
-    <div class="search_bar clearfix">
-		<a href="/" class="logo fl"><img src="/static/images/logo.png"></a>
-        {% if page_name == 1 %}
-            <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;{{ title }}</div>
-        {% endif %}
-		<div class="search_con fl">
-             <script>
-                $(function () {
-                    $('.input_btn').click(function () {
-    {#                    alert('ok');#}
-                        q = $('.input_text').val();
-                        location.href = '{% url "product:search" %}?q='+q+'&page=1'
-                    })
-                })
-
-            </script>
-			<input type="text" class="input_text fl" name="q" placeholder="Look up a product">
-			<input type="button" class="input_btn fr" name="" value="Search">
-		</div>
-
-        {% if guest_cart == 1 %}
-            <div class="guest_cart fr">
-                <a href="{% url "cart:cart" %}" class="cart_name fl">Cart</a>
-                <div class="goods_count fl" id="show_count">{{ cart_num }}</div>
-            </div>
-        {% endif %}
-	</div>
-
-
-
-
-{% block content %}
-{% endblock content %}
-{% block center_body %}
-
-{% endblock center_body %}
-
-
+<!-- Start Product By Category -->
+<!-- End Product By Category -->
 {% endblock body %}
+<!-- Start Category Banner -->
+<!-- End Category Banner -->
+<!--== Start Brand Carousel Area ==-->
+{% block brands %}
+<div class="brand-logo-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="brand-logo-carousel owl-carousel">
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-1.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-2.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-3.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-4.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-5.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+
+                    <!-- Single Brand Logo Start -->
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{% static 'assets/img/logo-6.png' %}" alt="brand"></a>
+                    </div>
+                    <!-- Single Brand Logo End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--== End Brand Carousel Area ==-->
+
+<!--== Start Newsletter Area ==-->
+<!--== End Newsletter Area ==-->
+
+<!--== Start Footer Area ==-->
+<footer id="footer-area">
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="footer-widget-content">
+                <div class="row">
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Contact Us</h3>
+                            <div class="widget-body">
+                                <div class="contact-info">
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-home"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Address:</strong> University of Glasgow
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Phone:</strong> (+44) 1234-567890
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Email:</strong> teamt@itech.it
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Our Team</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><a href="#">Jinghua Yan</a></li>
+                                    <li><a href="#">Jintao Wang</a></li>
+                                    <li><a href="#">Jing Xu</a></li>
+                                    <li><a href="#">Junjie Zhou</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Bottom Area -->
+    <div class="footer-bttom-area">
+        <div class="container">
+            <div class="row">
+                <!-- Copyright Text Area -->
+                <div class="col-md-6 m-auto text-center text-md-left order-last order-md-first">
+                    <p>Copyright &copy; 2019.ITECH Team T All rights reserved.</p>
+                </div>
+                <!-- Copyright Text Area -->
+
+                <!-- Payment Method Area -->
+                <div class="col-md-6 m-auto text-center text-md-right">
+                    <div class="payment-support">
+                        <img src="{% static 'assets/img/payment.png' %}" alt="Payment" class="d-inline-block" />
+                    </div>
+                </div>
+                <!-- Payment Method Area -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom Area -->
+</footer>
+<!--== End Footer Area ==-->
+
+<!-- Scroll to Top Start -->
+<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
+<!-- Scroll to Top End -->
+
+<!--== Product Quick View Modal Area Wrap ==-->
+<!--== Product Quick View Modal Area End ==-->
+
+
+<!--=======================Javascript============================-->
+<!--=== Jquery Min Js ===-->
+<script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+<!--=== Jquery Migrate Min Js ===-->
+<script src="{% static 'assets/js/vendor/jquery-migrate-1.4.1.min.js' %}"></script>
+<!--=== Popper Min Js ===-->
+<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+<!--=== Bootstrap Min Js ===-->
+<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+<!--=== Ajax Mail Js ===-->
+<script src="{% static 'assets/js/ajax-mail.js' %}"></script>
+<!--=== Plugins Min Js ===-->
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+
+<!--=== Active Js ===-->
+<script src="{% static 'assets/js/active.js' %}"></script>
+</body>
+</html>

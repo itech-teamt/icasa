@@ -1,222 +1,325 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block head %}
-    <script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/static/js/slide.js"></script>
-{% endblock head %}
+{% block body %}
+    <!--== Start Slider Area ==-->
+<div class="slider-area-wrap">
+    <div class="home-slider-carousel owl-carousel">
+        <div class="single-slide-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slider-text">
+                            <h2>Canvas Gear</h2>
+                            <h3>With Dual Front Camera</h3>
+                            <h4>Can Smooth Beautiful Images</h4>
+                            <a href="single-product-carousel.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% block center_body %}
+        <div class="single-slide-item slide-item_2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slider-text">
+                            <h2>Ajaira Mobile</h2>
+                            <h3>With Dollbee Speaker</h3>
+                            <h4>Can Smooth Sound</h4>
+                            <a href="single-product-carousel.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<div class="navbar_con">
-		<div class="navbar">
-			<h1 class="fl">All Categories</h1>
-			<ul class="navlist fl">
-				<li><a href="{% url "product:index" %}">Home</a></li>
-				<li class="interval">|</li>
-				<li><a href="#">News</a></li>
-				<li class="interval">|</li>
-				<li><a href="#">Contact Us</a></li>
-			</ul>
-		</div>
-	</div>
+        <div class="single-slide-item slide-item_3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slider-text">
+                            <h2>HasMobile</h2>
+                            <h3>With Dual Front Camera</h3>
+                            <h4>Can Smooth Beautiful Images</h4>
+                            <a href="single-product-carousel.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Slider Area ==-->
 
-	<div class="center_con clearfix">
-		<ul class="subnav fl">
-			<li><a href="#model01" class="iphone">iPhone</a></li>
-			<li><a href="#model02" class="ipad">iPad</a></li>
-			<li><a href="#model03" class="mac">Mac</a></li>
-			<li><a href="#model04" class="watch">Watch</a></li>
-			<li><a href="#model05" class="accessories">Accessories</a></li>
-			<li><a href="#model06" class="other">Other</a></li>
-		</ul>
-		<div class="slide fl">
-			<ul class="slide_pics">
-				<li><img src="/static/images/slide.jpg" alt="slide"></li>
-				<li><img src="/static/images/slide02.jpg" alt="slide"></li>
-				<li><img src="/static/images/slide03.jpg" alt="slide"></li>
-				<li><img src="/static/images/slide04.jpg" alt="slide"></li>
-			</ul>
-			<div class="prev"></div>
-			<div class="next"></div>
-			<ul class="points"></ul>
-		</div>
-		<div class="adv fl">
-			<a href="#"><img src="/static/images/adv01.jpg"></a>
-			<a href="#"><img src="/static/images/adv02.jpg"></a>
-		</div>
-	</div>
 
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model01">iPhone</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat0 %}
-                    <a href="/{{ g.id }}/">{{  g.name|slice:'10' }}</a>
-                {%  endfor %}
-			</div>
-			<a href="/list1_1_1/" class="goods_more fr" id="fruit_more">See More ></a>
-		</div>
+<!--== Start Call To Action ==-->
+<section id="call-to-action">
+    <div class="container">
+        <div class="call-to-action-content">
+            <div class="row">
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6 m-auto">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <i class="fa fa-truck"></i>
+                        </div>
+                        <div class="call-action-info">
+                            <h4>Free Shipping</h4>
+                            <p>on order over $100</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>
-			<ul class="goods_list fl">
-                {% for product in cat01 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="prize"> ￥ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model02">iPad</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat1 %}
-                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
-                {% endfor %}
-			</div>
-			<a href="/list2_1_1/" class="goods_more fr">See More ></a>
-		</div>
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <i class="fa fa-support"></i>
+                        </div>
+                        <div class="call-action-info">
+                            <h4>24/7 Support</h4>
+                            <p>Online consultations</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>
-			<ul class="goods_list fl">
-                {% for product in cat11 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="price"> $ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="call-action-info">
+                            <h4>Daily updates</h4>
+                            <p>Check out store</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
 
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model03">Mac</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat2 %}
-                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
-                {% endfor %}
-			</div>
-			<a href="/list3_1_1/" class="goods_more fr">See More ></a>
-		</div>
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <i class="fa fa-refresh"></i>
+                        </div>
+                        <div class="call-action-info">
+                            <h4>30-day Returns</h4>
+                            <p>Moneyback guarantee</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--== End Call To Action ==-->
+<!-- Start Sale Banner Area -->
+<div class="banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="shop.html">
+                    <img src="assets/img/banner-home-one.jpg" alt="Banner"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Sale Banner Area -->
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="/static/images/banner03.jpg"></div>
-			<ul class="goods_list fl">
-                {% for product in cat21 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="price"> $ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
+    <section id="productsby-category">
+    <div class="container">
+        <div class="productby-cate-content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list1_1_1/">iPhone</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list1_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
 
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model04">Watch</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat3 %}
-                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
-                {% endfor %}
-			</div>
-			<a href="/list4_1_1/" class="goods_more fr">See More ></a>
-		</div>
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat01 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="/static/images/banner04.jpg"></div>
-			<ul class="goods_list fl">
-                {% for product in cat31 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="price"> $ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model05">Accessories</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat4 %}
-                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
-                {% endfor %}
-			</div>
-			<a href="/list5_1_1/" class="goods_more fr">See More ></a>
-		</div>
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list2_1_1/">iPad</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list2_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="/static/images/banner05.jpg"></div>
-			<ul class="goods_list fl">
-                {% for product in cat41 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="price"> $ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat11 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
 
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model06">Other</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-                {% for g in cat5 %}
-                    <a href="/{{ g.id }}/">{{ g.name|slice:'10' }}</a>
-                {% endfor %}
-			</div>
-			<a href="/list6_1_1/" class="goods_more fr">See More ></a>
-		</div>
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-		<div class="goods_con clearfix">
-			<div class="goods_banner fl"><img src="{% static 'images/banner06.jpg' %}"></div>
-			<ul class="goods_list fl">
-                {% for product in cat51 %}
-                <li>
-                    <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>
-                    <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>
-                    <div class="price"> $ {{ product.price }} </div>
-                </li>
-                {% endfor %}
-			</ul>
-		</div>
-	</div>
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list3_1_1/">Mac</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list3_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
 
-	<script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
-    <script type="text/javascript">
-        BCSlideshow('focuspic');
-        var oFruit = document.getElementById('fruit_more');
-        var oShownum = document.getElementById('show_count');
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat21 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
 
-        var hasorder = localStorage.getItem('order_finish');
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list4_1_1/"">Watch</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list4_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
 
-        if(hasorder)
-        {
-        oShownum.innerHTML = '2';
-        }
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat31 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
 
-        oFruit.onclick = function(){
-        window.location.href = 'list.html';
-        }
-    </script>
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list5_1_1/">Accessories</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list5_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
 
-{% endblock center_body %}
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat41 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
+
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="category-product-wrap">
+                        <h4 class="cate-pro-title"><a href="/list6_1_1/">Other</a></h4>
+                        <figure class="cat-banner">
+                            <a href="/list6_1_1/"><img src="assets/img/cat-pro-1.jpg" alt="Category"></a>
+                        </figure>
+
+                        <div class="products-wrapper">
+                            <div class="cat-pro-carousel owl-carousel">
+                                <!-- Single Product Start -->
+                                {% for product in cat51 %}
+                                <div class="single-product-item">
+                                    <figure class="product-thumb">
+                                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"
+                                                                           alt="Product"></a>
+                                        <a href="/{{ product.id }}/" class="btn btn-round btn-cart" title="See Details"
+                                           data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h2 class="product-title"><a href="/{{ product.id }}/">{{ product.name }}</a></h2>
+
+                                        <span class="product-price">${{ product.price }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Product End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}

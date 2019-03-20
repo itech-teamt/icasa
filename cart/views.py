@@ -27,7 +27,7 @@ def add(request, gid, count):
     uid = request.user.id
     print(uid)
     gid, count = int(gid), int(count)
-    # if the item is already in cart, we add the amount, otherwise we addi to cart
+    # if the item is already in cart, we add the amount, otherwise we add it to cart
     carts = Cart.objects.filter(user_id=uid, product_id=gid)
     if len(carts) >= 1:
         cart = carts[0]
@@ -38,13 +38,13 @@ def add(request, gid, count):
         cart.product_id = gid
         cart.count = count
     cart.save()
-    # if it is an ajax submission we return a json
-    if request.is_ajax():
-        count = Cart.objects.filter(user_id=request.user.id).count()
-
-        return JsonResponse({'count': count})
-    else:
-        return redirect(reverse("cart:cart"))
+    # # if it is an ajax submission we return a json
+    # if request.is_ajax():
+    #     count = Cart.objects.filter(user_id=request.user.id).count()
+    #
+    #     return JsonResponse({'count': count})
+    # else:
+    return redirect(reverse("cart:cart"))
 
 
 @login_required

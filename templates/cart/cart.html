@@ -33,21 +33,22 @@
             txt=$(this).next();
 
             txt.val(parseFloat(txt.val())+1).blur();
-
+            total();
         });
          $('.minus').click(function () {
             txt=$(this).prev();
-             txt.val(parseFloat(txt.val())-1).blur()
-
+             txt.val(parseFloat(txt.val())-1).blur();
+            total();
         });
 {#         $('#check_goods').click(function () {#}
 {#             c = $(this).attr('checked');#}
 {#             alert(c);#}
 {#         });#}
+
         //ajax in blur event
-        $('.num_show').blur(function () {
+        $('.cartcount').blur(function () {
             count=parseFloat($(this).val());
-            stock=parseFloat($(this).attr('stock'));
+            {#stock=parseFloat($(this).attr('stock'));#}
             if(count<1){
                 alert('Quantity cannot be less than 1');
                 $(this).val(1);
@@ -55,17 +56,17 @@
                 $(this).focus();
                 return;
             }
-            else if(count>stock){
-             alert('Quantity cannot exceed stock');
-             $(this).val(stock);
-             count = stock;
-             $(this).focus();
-             return;
-            }
+            {#else if(count>stock){#}
+            {# alert('Quantity cannot exceed stock');#}
+            {# $(this).val(stock);#}
+            {# count = stock;#}
+            {# $(this).focus();#}
+            {# return;#}
+            {#}#}
 
             cart_id = $(this).parents('.cart_list_td').attr('id');
             $.get('/cart/edit'+cart_id+'_'+count+'/',function (data) {
-                if(data.count==0){
+                if(data.count===0){
 {#                    alert('ok');#}
                     total();
                 }
@@ -96,32 +97,32 @@
         total1=0;
         total_count=0;
 
-            $('.col07').each(
+            $('.tb').each(
                 function () {
 
                 //get quantity
-                count=$(this).prev().find('input').val();
+                count=$(this).children('.pro-quantity').find('input').val();
                 //get price
-                price = $(this).prev().prev().text();
+                price = $(this).children('.pro-price').text();
                 //get subtotal
                 total0=parseFloat(count)*parseFloat(price);
                 //show subtotal
 {#                checked = $(this).prev().prev().prev().prev().prev().prev().find('input').attr('checked')#}
 {#                if(checked == 'checked')#}
 {#                {}#}
-                    $(this).text(total0.toFixed(2));
+{#                    $(this).text(total0.toFixed(2));#}
                 //add to order total
                 total1 += total0;
                 total_count++;
             });
             //show order total
             $('#total').text(total1.toFixed(2));
-            $('.total_count1').text(total_count);
+            $('#totalitems').text(total_count);
         }
     function go_order() {
         s = '';
-        $(':checked:not(#check_all)').each(function () {
-             id = $(this).parents('.cart_list_td').attr('id');
+        $('.cart_list_td').each(function () {
+             id = $(this).attr('id');
 
              s = s +'cart_id='+id + '&'
 
@@ -136,6 +137,104 @@
         }
 </script>
 {% endblock head %}
+
+{% block body %}
+
+<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="{% url 'product:index' %}">Home</a></li>
+                        <li><a>Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <!-- Cart Page Content Start -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Cart Table Area -->
+                <div class="cart-table table-responsive">
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="pro-thumbnail">Thumbnail</th>
+                            <th class="pro-title">Product</th>
+                            <th class="pro-price">Price</th>
+                            <th class="pro-quantity">Quantity</th>
+{#                            <th class="pro-subtotal">Total</th>#}
+                            <th class="pro-remove">Remove</th>
+                        </tr>
+                        </thead>
+                          {% for cart in carts %}
+                        <tbody>
+                        <tr class="tb cart_list_td clearfix" id="{{ cart.id }}">
+                            <td class="pro-thumbnail"><img class="img-fluid" src="/static/{{ cart.product.image }}"
+                                                                       alt="Product"/></a></td>
+                            <td class="pro-title">{{ cart.product.name }}</td>
+                            <td class="pro-price"><span>{{ cart.product.price }}</span></td>
+                            <td class="pro-quantity">
+                                <div class="pro-qty">
+                                    <a href="javascript:;" class="add fl">+</a>
+                                    <input type="text" class="cartcount" value={{ cart.count }}>
+                                    <a href="javascript:;" class="minus fl">-</a>
+                                </div>
+                            </td>
+                            <td class="pro-remove"><a href="javascript:cart_del({{ cart.id }});"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="hidden"></a>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 ml-auto">
+                <!-- Cart Calculation Area -->
+                <div class="cart-calculator-wrapper">
+                    <h3>Cart Totals</h3>
+                    <div class="cart-calculate-items">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Total Items</td>
+                                    <td class="total-amount"><em id="totalitems"></em></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Price</td>
+                                    <td class="total-amount"><span>$</span><em id="total"></em></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {% if carts|length == 0 %}
+                    <a href="javascript:;" class="btn">Proceed To Checkout</a>
+                    {% else %}
+                    <a href="javascript:go_order()" class="btn">Proceed To Checkout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Cart Page Content End -->
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+{% endblock body %}
+
+
 
 {% block center_body %}
 	<div class="total_count">Total: <em>{{ carts|length }}</em>Product(s)</div>

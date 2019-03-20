@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'crispy_forms',
     'tinymce',
 
     'product',
@@ -159,7 +159,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'user.forms.SignupForm'
-LOGIN_REDIRECT_URL = '/user/profile/'
+LOGIN_REDIRECT_URL = '/user/myaccount/'
 # LOGIN_URL = '/user/login'
 # LOGOUT_URL = '/user/logout'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = ''

@@ -40,7 +40,7 @@ def order(request):
 
 
 @login_required
-@transaction.atomic()
+# @transaction.atomic()
 def order_handle(request):
     tran_id = transaction.savepoint()
     cart_ids = request.POST.get('cart_ids')

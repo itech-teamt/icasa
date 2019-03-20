@@ -1,4 +1,4 @@
-{% extends 'product/base_p.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% block head %}
     <script type="text/javascript">
@@ -44,76 +44,115 @@
 
 {% endblock head %}
 
-{% block center_content %}
-	<div class="goods_detail_con clearfix">
-		<div class="goods_detail_pic fl"><img src="/static/{{ product.image }}"></div>
+{% block body %}
+    <!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#" class="active">{{ product.name }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
 
-		<div class="goods_detail_list fr">
-			<h3>{{ product.name }}</h3>
-			<p>{{ product.description }}</p>
-			<div class="prize_bar">
-				<span class="show_price">$<em id="price">{{ product.price }}</em></span>
-				<span class="show_stock">Stock：<span class="goods_stock">{{ product.stock }}</span></span>
-			</div>
-			<div class="goods_num clearfix">
-				<div class="num_name fl">Quantity：</div>
-				<div class="num_add fl">
-					<input type="text" class="num_show fl" value="1">
-					<a href="javascript:plus();" class="add fr">+</a>
-					<a href="javascript:minus();" class="minus fr">-</a>
-				</div> 
-			</div>
-			<div class="total">Total Price： $<em id="gtotal">{{ product.price }}</em></div>
-			<div class="operate_btn">
-                {% if user.is_authenticated %}
-                    <a href="javascript:;" class="buy_btn">Buy it!</a>
-                {% else %}
-                    <a href="{% url "account_login" %}" class="buy_btn">Buy it!</a>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <a href="javascript:;" class="add_cart" id="add_cart">Add to Cart</a>
-                {% else %}
-                    <a href="{% url "account_login" %}" class="add_cart" id="add_cart">Add to Cart</a>
-                {% endif %}
-			</div>
-		</div>
-	</div>
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- Single Product Page Content Start -->
+            <div class="col-lg-12">
+                <div class="single-product-page-content">
+                    <div class="row">
+                        <!-- Product Thumbnail Start -->
+                        <div class="col-lg-5">
+                            <div class="product-thumbnail-wrap">
+                                <div class="product-thumb-carousel owl-carousel">
+                                    <div class="single-thumb-item">
+                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                    </div>
 
-	<div class="main_wrap clearfix">
-		<div class="l_wrap fl clearfix">
-			<div class="new_goods">
-				<h3>Newly Arrived</h3>
-				<ul>
-                    {% for product in news %}
-					<li>
-						<a href="/{{ product.id }}"><img src="/static/{{ product.image }}"></a>
-						<h4><a href="#">{{ product.name }}</a></h4>
-						<div class="prize">${{ product.price }}</div>
-					</li>
-                    {%  endfor %}
-                </ul>
-			</div>
-		</div>
+                                    <div class="single-thumb-item">
+                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                    </div>
 
-		<div class="r_wrap fr clearfix">
-			<ul class="detail_tab clearfix">
-				<li class="active">Product Desciption</li>
-				<li>Comments</li>
-			</ul>
+                                    <div class="single-thumb-item">
+                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                    </div>
 
-			<div class="tab_content">
-				<dl>
-					<dt>Product Details：</dt>
-					<dd>{{ product.detail|safe }}</dd>
-				</dl>
-			</div>
+                                    <div class="single-thumb-item">
+                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Thumbnail End -->
 
-		</div>
-	</div>
+                        <!-- Product Details Start -->
+                        <div class="col-lg-7">
+                            <div class="product-details">
+                                <h2>{{ product.name }}</h2>
+                                <br>
 
-	<div class="add_jump"></div>
+                                <span class="price">${{ product.price}}</span>
 
-	<script type="text/javascript">
+
+                                <p class="products-desc">{{ product.description }}</p>
+
+                                <div class="product-quantity d-flex align-items-center">
+                                    <div class="quantity-field">
+                                        <label for="qty">Qty</label>
+                                        <input type="number" id="num_show" min="1" max="100" value="1" />
+                                    </div>
+                                    {% if user.is_authenticated %}
+                                        <a id="add_cart" class="btn btn-cart-large" onclick="window.location.href='javascript:;'"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                    {% else %}
+                                        <a id="add_cart" class="btn btn-cart-large" onclick="window.location.href='{% url "account_login" %}'"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Details End -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Product Full Description Start -->
+                            <div class="product-full-info-reviews">
+                                <!-- Single Product tab Menu -->
+                                <nav class="nav" id="nav-tab">
+                                    <a class="active" id="description-tab" data-toggle="tab" href="#description">Description</a>
+                                </nav>
+                                <!-- Single Product tab Menu -->
+
+                                <!-- Single Product tab Content -->
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="description">
+                                        <p>{{ product.detail }}</p>
+
+                                    </div>
+                                </div>
+                                <!-- Single Product tab Content -->
+                            </div>
+                            <!-- Product Full Description End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Product Page Content End -->
+        </div>
+    </div>
+</div>
+
+    	<script type="text/javascript">
 		var $add_x = $('#add_cart').offset().top;
 		var $add_y = $('#add_cart').offset().left;
 
@@ -142,7 +181,7 @@
                 });
 
             });
-            num = parseInt($('.num_show').val());
+            num = parseInt($('#num_show').val());
             $.get('/cart/add{{ product.id }}_'+num+'/',function (data) {
                 $('#show_count').text(data.count);
             });
@@ -152,5 +191,8 @@
                 $('#show_count').text(data.count);
             });
 	</script>
+{% endblock %}
 
+{% block center_content %}
+	<div class="add_jump"></div>
 {% endblock center_content %}
