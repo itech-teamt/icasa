@@ -123,15 +123,15 @@
                                                     </tr>
                                                 </thead>
 
-{#                                                <tbody>#}
-{#                                                    {% for order in page %}#}
-{#                                                    <tr>#}
-{#                                                        <td>{{ order.id }}</td>#}
-{#                                                        <td>{{ order.date|date }}</td>#}
-{#                                                        <td>Pending</td>#}
-{#                                                        <td>${{ order.total_price }}</td>#}
-{#                                                        <td><a href="#" class="btn">View</a></td>#}
-{#                                                    </tr>#}
+                                                <tbody>
+                                                    {% for order in page %}
+                                                    <tr>
+                                                        <td>{{ order.id }}</td>
+                                                        <td>{{ order.date|date }}</td>
+                                                        <td>Pending</td>
+                                                        <td>${{ order.total }}</td>
+                                                        <td><a href="#" class="btn">View</a></td>
+                                                    </tr>
 {#                                                        <table class="order_list_table w980">#}
 {#                                                            <tbody>#}
 {#                                                            <tr>#}
@@ -151,7 +151,7 @@
 {#                                                            </tr>#}
 {#                                                            </tbody>#}
 {#                                                        </table>#}
-{#                                                    {% endfor %}#}
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
