@@ -142,16 +142,12 @@
 </div>
 	<script type="text/javascript">
 		$('#order_btn').click(function() {
-		    {#//check current address#}
-		    {#$('.user_info_check').each(function () {#}
-		    {#    text = $(this).text();#}
-		    {#    if (text === ''){#}
-		    {#        alert('Please enter a correct address');#}
-            {#        window.location.href = '{% url "user:myaccount" %}';#}
-            {#    }#}
-            {##}
-
-		    //get all ids and concatenate them as a string
+		    //check user address
+            if({{ address }} == 0){
+                alert('Please make sure your address is correct.');
+                window.location.href = '{% url "user:myaccount" %}';
+            }else{
+                		    //get all ids and concatenate them as a string
             cartids = '';
             $('.goods_list_td').each(function () {
                cartids = cartids + $(this).attr('id') +','
@@ -164,7 +160,6 @@
                     'total_price':total,
                     'csrfmiddlewaretoken':'{{ csrf_token }}'
 		    };
-
 		    //send request
             $.post('/order/push/',data,function (data) {
 
@@ -178,84 +173,8 @@
                     alert('Failed to Submit Order')
                 }
             });
+            }
+
 		})
 	</script>
-
 {% endblock body %}
-
-
-
-
-{#	<h3 class="common_title">Confirm Address</h3>#}
-{##}
-{#	<div class="common_list_con clearfix">#}
-{#		<dl>#}
-{#			<dt>Send to：</dt>#}
-{#			<span><input type="radio" name="" checked="checked"></span>#}
-{#            Current Address：<span class="user_info_check">{{ user.userprofile.address }}</span>#}
-{#            Phone No：<span class="user_info_check">{{ user.userprofile.phone }}</span>#}
-{#		</dl>#}
-{#		<a href="" class="edit_site">Edit Addresses</a>#}
-{##}
-{#	</div>#}
-{#	#}
-{#	<h3 class="common_title">Payment Method</h3>#}
-{#	<div class="common_list_con clearfix">#}
-{#		<div class="pay_style_con clearfix">#}
-{#			<input type="radio" name="pay_style" checked>#}
-{#			<label class="cash">Collect at Store</label>#}
-{#			<input type="radio" name="pay_style">#}
-{#			<label class="visa">Visa</label>#}
-{#			<input type="radio" name="pay_style">#}
-{#			<label class="mastercard">MasterCard</label>#}
-{#			<input type="radio" name="pay_style">#}
-{#			<label class="paypal">PayPal</label>#}
-{#		</div>#}
-{#	</div>#}
-{##}
-{#	<h3 class="common_title">Product list</h3>#}
-{#	#}
-{#	<div class="common_list_con clearfix">#}
-{#		<ul class="goods_list_th clearfix">#}
-{#			<li class="col01">Product name</li>#}
-{#			<li class="col02"></li>#}
-{#			<li class="col03">Product Price</li>#}
-{#			<li class="col04">Quantity</li>#}
-{#			<li class="col05">Subtotal</li>#}
-{#		</ul>#}
-{#        {% for cart in carts %}#}
-{#        <ul class="goods_list_td clearfix" id="{{ cart.id }}">#}
-{#			<li class="col01">{{ forloop.counter }}</li>#}
-{#			<li class="col02"><img src="/static/{{ cart.product.image }}/"></li>#}
-{#			<li class="col03">{{ cart.product.name }}</li>#}
-{#			<li class="col04">{{ cart.product.weight }}</li>#}
-{#			<li class="col05">{{ cart.product.price }}</li>#}
-{#			<li class="col06">{{ cart.count }}</li>#}
-{#			<li class="col07">$25.80</li>#}
-{#        </ul>#}
-{#        {% endfor %}#}
-{##}
-{#	</div>#}
-{##}
-{#	<h3 class="common_title">Checkout Whole Order</h3>#}
-{#	<h3 class="common_title">Order Submission Time{{ value|time }}</h3>#}
-{##}
-{#	<div class="common_list_con clearfix">#}
-{#		<div class="settle_con">#}
-{#			<div class="total_goods_count"><em>{{ carts|length }}</em>Items，Total Price: $<b>{{ total_price }}</b></div>#}
-{#			<div class="transit">Delivery fee： $<b>{{ trans_cost }}</b></div>#}
-{#			<div class="total_pay">Total to pay： $<b>{{ total_trans_price }}</b></div>#}
-{#		</div>#}
-{#	</div>#}
-{##}
-{#	<div class="order_submit clearfix">#}
-{#		<a href="javascript:;" id="order_btn">Submit Order</a>#}
-{#	</div>	#}
-{##}
-{#		<div class="popup_con">#}
-{#		<div class="popup">#}
-{#			<p>Order Submitted！</p>#}
-{#		</div>#}
-{##}
-{#		<div class="mask"></div>#}
-{#	</div>#}

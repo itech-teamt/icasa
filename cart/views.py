@@ -14,6 +14,7 @@ def user_cart(request):
         'page_name': 1,
         'carts': carts
     }
+    # if it is an ajax submission we return a json
     if request.is_ajax():
         count = Cart.objects.filter(user_id=request.user.id).count()
 
@@ -38,7 +39,7 @@ def add(request, gid, count):
         cart.product_id = gid
         cart.count = count
     cart.save()
-    # # if it is an ajax submission we return a json
+
     # if request.is_ajax():
     #     count = Cart.objects.filter(user_id=request.user.id).count()
     #

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'tinymce',
-
+    'widget_tweaks',
     'product',
     'cart',
     'user',
@@ -160,11 +160,12 @@ SITE_ID = 1
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'user.forms.SignupForm'
 LOGIN_REDIRECT_URL = '/user/myaccount/'
-# LOGIN_URL = '/user/login'
-# LOGOUT_URL = '/user/logout'
-# SOCIAL_AUTH_LOGIN_REDIRECT_URL = ''
-#
-# SOCIAL_AUTH_FACEBOOK_APP_ID = '2338256373071830'
-# SOCIAL_AUTH_FACEBOOK_SECRET = 'e2777dd08b0da339f1f137e7a7891567'
-# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'joseyan1996@163.com'
+EMAIL_HOST_PASSWORD = '2409650y'
+EMAIL_USE_TLS = True
+EMAIL_FROM = 'joseyan1996@163.com'
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'

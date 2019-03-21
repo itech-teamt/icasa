@@ -37,8 +37,6 @@
              total = num*price;
              $('.num_show').val(num);
              $('#gtotal').text('$' +total.toFixed(2));
-             {#$('add_cart').attr('href', '/cart/add'+$('id').val())#}
-
         });
 
         $('.plus').click(function () {
@@ -98,15 +96,15 @@
                                     </div>
 
                                     <div class="single-thumb-item">
-                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                        <img class="img-fluid" src="/static/{{ product.image2 }}/" alt="Product" /></a>
                                     </div>
 
                                     <div class="single-thumb-item">
-                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                        <img class="img-fluid" src="/static/{{ product.image3 }}/" alt="Product" /></a>
                                     </div>
 
                                     <div class="single-thumb-item">
-                                        <img class="img-fluid" src="/static/{{ product.image }}/" alt="Product" /></a>
+                                        <img class="img-fluid" src="/static/{{ product.image4 }}/" alt="Product" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -142,6 +140,7 @@
                         </div>
                         <!-- Product Details End -->
                     </div>
+                <div class="add_jump"></div>
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -173,34 +172,12 @@
 </div>
 
     	<script type="text/javascript">
-		var $add_x = $('#add_cart').offset().top;
-		var $add_y = $('#add_cart').offset().left;
-
-		var $to_x = $('#show_count').offset().top;
-		var $to_y = $('#show_count').offset().left;
-
-		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'});
 		$('#add_cart').click(function() {
-
             if ($('.login_btn').text().indexOf('Login') >= 0) {
                 alert('Please log in first');
                 location.href('/accounts/login/');
                 return;
-
             }
-            {# add animation#}
-            $(".add_jump").stop().animate({
-                    'left': $to_y + 7,
-                    'top': $to_x + 7
-                },
-                "fast", function () {
-                    $(".add_jump").fadeOut('fast', function () {
-                            count = $('.num_show').val();
-                            alert(count);
-                            $('#show_count').html(count);
-                });
-
-            });
             num = parseInt($('#num_show').val());
             $.get('/cart/add{{ product.id }}_'+num+'/',function (data) {
                 $('#show_count').text(data.count);
@@ -209,7 +186,6 @@
             $('#num_show').val(1);
         });
 		$.get('/cart/',function (data) {
-                {#alert(data.count);#}
                 $('#show_count').text(data.count);
             });
 	</script>

@@ -1,48 +1,4 @@
 {% extends 'base.html' %}
-{##}
-{#{% block center_body %}#}
-{##}
-{##}
-{#	<div class="main_con clearfix">#}
-{#		<div class="left_menu_con clearfix">#}
-{#			<h3>My Account</h3>#}
-{#			<ul>#}
-{#				<li><a href="{% url "user:order" 1 %}">· My Orders</a></li>#}
-{#			</ul>#}
-{#		</div>#}
-{#		<div class="right_content clearfix">#}
-{#				<div class="info_con clearfix">#}
-{#				<h3 class="common_title2">Basic Info</h3>#}
-{#						<ul class="user_info_list">#}
-{#							<li><span>Username：</span>{{ user.username }}</li>#}
-{#                            <li><span>First name：</span>{{ user.first_name }}</li>#}
-{#                            <li><span>Last name：</span>{{ user.last_name }}</li>#}
-{#							<li><span>Phone No：</span>{{ user.userprofile.phone }}</li>#}
-{#                            <li><span>Zip Code：</span>{{ user.userprofile.zip }}</li>#}
-{#							<li><span>Address：</span>{{ user.userprofile.address }}</li>#}
-{#						</ul>#}
-{#                    <a href="{% url 'user:profile_update' %}">Edit</a>#}
-{#				</div>#}
-{#            <h3 class="common_title2">{{ explain }}</h3>#}
-{#            <div class="has_view_list">#}
-{#                <ul class="goods_type_list clearfix">#}
-{#                    {%  for product in products_list %}#}
-{#                    <li>#}
-{#                        <a href="/{{ product.id }}/"><img src="/static/{{ product.image }}"></a>#}
-{#                        <h4><a href="/{{ product.id }}/">{{ product.name }}</a></h4>#}
-{#                        <div class="operate">#}
-{#                            <span class="prize">${{ product.price }}</span>#}
-{#                            <span class="unit">{{ product.price }}/{{ product.unit }}</span>#}
-{#                            <a href="/cart/add{{ product.id }}_1/" class="add_goods" title="Add to Cart"></a>#}
-{#                        </div>#}
-{#                    </li>#}
-{#                    {% endfor %}#}
-{#			</ul>#}
-{#            </div>#}
-{#		</div>#}
-{#	</div>#}
-{#{% endblock center_body %}#}
-
 {% block body %}
     <!--== Start Page Breadcrumb ==-->
 <div class="page-breadcrumb-wrap">
@@ -60,7 +16,6 @@
     </div>
 </div>
 <!--== End Page Breadcrumb ==-->
-
 <!--== Page Content Wrapper Start ==-->
 <div id="page-content-wrapper">
     <div class="container">
@@ -80,12 +35,13 @@
                                 <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a>
 
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
-
+                                <a href="{% url 'account_change_password' %}"><i class="fa fa-sign-out"></i> Change Password</a>
                                 <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+
+
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
-
                         <!-- My Account Tab Content Start -->
                         <div class="col-lg-9 mt-15 mt-lg-0">
                             <div class="tab-content" id="myaccountContent">
@@ -99,10 +55,14 @@
                                         </div>
 
                                         <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, edit your profile and also manage your addresses.</p>
+                                        <br>
+                                        <p class="mb-0">We recommend you to provide correct personal information</p>
+                                        <br>
+                                        <p class="mb-0">Important: Please make sure <strong>your address</strong> is correct.</p>
+
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
-
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="orders" role="tabpanel">
                                     <div class="myaccount-content">
@@ -123,7 +83,7 @@
                                                             <td>{{ order.id }}</td>
                                                             <td>{{ order.date|date }}</td>
                                                             <td>${{ order.total_price }}</td>
-                                                            <td>Pending</td>
+                                                            <td>{% ifequal order.has_payed True %}Paid{% else %}Processing{% endifequal %}</td>
                                                         </tr>
                                                         <table class="table table-bordered">
                                                         <tr>
@@ -146,42 +106,9 @@
                                                         <br>
                                                         <br>
                                                     {% endfor %}
-
                                         </div>
-{#                                        <div class="products-settings-option d-block d-md-flex">#}
-{#                                            <nav class="page-pagination">#}
-{#                                                <ul class="pagination">#}
-{#                                                    {% if page.has_previous %}#}
-{#                                                        <li><a href="?page={{page.previous_page_number}}#orders" aria-label="Previous">&laquo;</a></li>#}
-{#                                                    {% endif %}#}
-{#                                                    {% for pindex in paginator.page_range %}#}
-{#                                                        <li><a href="?page={{pindex}}#orders"><span>{{pindex}}</span></a></li>#}
-{#                                                        {% if pindex == page.number %}#}
-{#                                                            <li><a class="active" href="/list{{ category.id }}_{{pindex}}_{{ sort }}">{{ pindex }}</a></li>#}
-{#                                                        {% else %}#}
-{#                                                            <li><a href="/list{{ category.id }}_{{pindex}}_{{ sort }}">{{ pindex }}</a></li>#}
-{#                                                        {% endif %}#}
-{#                                                    {% endfor %}#}
-{#                                                    {% if page.has_next %}#}
-{#                                                        <li><a href="?page={{page.next_page_number}}#orders" aria-label="Next">&raquo;</a></li>#}
-{#                                                    {% endif %}#}
-{#                                                </ul>#}
-{#                                            </nav>#}
-{#                                        </div>#}
                                     </div>
                                 </div>
-                                <!-- Single Tab Content End -->
-
-{#                                <!-- Single Tab Content Start -->#}
-{#                                <div class="tab-pane fade" id="payment-method" role="tabpanel">#}
-{#                                    <div class="myaccount-content">#}
-{#                                        <h3>Payment Method</h3>#}
-{##}
-{#                                        <p class="saved-message">You Can't Saved Your Payment Method yet.</p>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <!-- Single Tab Content End -->#}
-{##}
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="address-edit" role="tabpanel">
                                     <div class="myaccount-content">

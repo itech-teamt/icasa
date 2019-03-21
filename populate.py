@@ -14,7 +14,10 @@ from django.contrib.sites.models import Site
 def populate():
     iphone_products = [
         {"name": "iPhoneXS",
-         "image": "/products/iphoneXS1.jpg",
+         "image": "/products/iPhoneXS1.jpg",
+         "image2":"/products/iPhoneXS2.jpg",
+         "image3": "/products/iPhoneXS3.jpg",
+         "image4": "/products/iPhoneXS4.jpg",
          "price": 899,
          "description": "Super Retina. In big and bigger",
          "stock": 2000,
@@ -22,6 +25,9 @@ def populate():
 
         {"name": "iPhone XS Max",
          "image": "/products/iPhoneXsMax1.jpg",
+         "image2": "/products/iPhoneXsMax2.jpg",
+         "image3": "/products/iPhoneXsMax3.jpg",
+         "image4": "/products/iPhoneXsMax4.jpg",
          "price": 1000,
          "description": "The new generation of iPhone",
          "stock": 1000,
@@ -29,20 +35,29 @@ def populate():
 
         {"name": "iPhone XR",
          "image": "/products/iPhoneXR1.jpg",
+         "image2": "/products/iPhoneXR2.jpg",
+         "image3": "/products/iPhoneXR3.jpg",
+         "image4": "/products/iPhoneXR4.jpg",
          "price": 749,
          "description": "Brilliant. In every way.",
          "stock": 1000,
          "detail": "All-new Liquid Retina display — the most advanced LCD in the industry. A12 Bionic, the smartest, most powerful chip in a smartphone. Advanced Face ID. And a breakthrough camera system with Depth Control."},
 
         {"name": "iPhone 7",
-         "image": "/products/iPhone7 1.jpg",
+         "image": "/products/iPhone7-1.jpg",
+         "image2": "/products/iPhone7-2.jpg",
+         "image3": "/products/iPhone7-3.jpg",
+         "image4": "/products/iPhone7-4.jpg",
          "price": 449,
          "description": "This is 7",
          "stock": 500,
          "detail": "Hd retina display and 5.5-inch (diagonal) LCD widescreen multi-touch display with IPS technology. 1920 x 1080 pixel resolution. "},
 
         {"name": "iPhone 8",
-         "image": "/products/iPhone8 1.jpg",
+         "image": "/products/iPhone8-1.jpg",
+         "image2": "/products/iPhone8-2.jpg",
+         "image3": "/products/iPhone8-3.jpg",
+         "image4": "/products/iPhone8-4.jpg",
          "price": 599,
          "description": "The biggest thing to happen to iPhone since iPhone 7",
          "stock": 800,
@@ -52,21 +67,30 @@ def populate():
 
     watch_products = [
         {"name": "iWatch series 3",
-         "image": "/products/watch3 1.jpg",
+         "image": "/products/watch3-1.jpg",
+         "image2": "/products/watch3-2.jpg",
+         "image3": "/products/watch3-3.jpg",
+         "image4": "/products/watch3-4.jpg",
          "price": 279,
          "description": "Stay active.Stay healthy.Stay connected.",
          "stock": 200,
          "detail": "Monitor your health. Track your workouts. Get the motivation you need to achieve your fitness goals."},
 
         {"name": "iWatch series 4",
-         "image": "/products/watch4 1.jpg",
+         "image": "/products/watch4 3.jpg",
+         "image2": "/products/watch4 1.jpg",
+         "image3": "/products/watch4 2.jpg",
+         "image4": "/products/watch4 4.jpg",
          "price": 399,
          "description": "All new. For a better you.",
          "stock": 2000,
          "detail": "Fundamentally redesigned and re-engineered to help you stay even more active, healthy and connected."},
 
         {"name": "iWatch series 4_hermes",
-         "image": "/products/hermes1.jpg",
+         "image": "/products/hermes-1.jpg",
+         "image2": "/products/hermes-2.jpg",
+         "image3": "/products/hermes-3.jpg",
+         "image4": "/products/hermes-4.jpg",
          "price": 1299,
          "description": "A shared vision, seen in a whole new light.",
          "stock": 1200,
@@ -74,6 +98,9 @@ def populate():
 
         {"name": "iWatch series 4_nike",
          "image": "/products/nike1.jpg",
+         "image2": "/products/nike 2.jpg",
+         "image3": "/products/nike 3.jpg",
+         "image4": "/products/nike 4.jpg",
          "price": 399,
          "description": "Reflective Nike Sport Loop.Be seen in all the right places.",
          "stock": 6000,
@@ -82,7 +109,10 @@ def populate():
     pad_products = [
         {
             "name": "iPad Pro 2018",
-            "image": "/products/iPad Pro1.jpg",
+            "image": "/products/iPad-Pro1.jpg",
+            "image2": "/products/iPad-Pro2.jpg",
+            "image3": "/products/iPad-Pro3.jpg",
+            "image4": "/products/iPad-Pro4.jpg",
             "price": 888,
             "description": "New,full screen,all-round powerful",
             "stock": 12,
@@ -91,7 +121,10 @@ def populate():
 
         {
             "name": "iPad Air",
-            "image": "/products/iPad Air1.jpg",
+            "image": "/products/iPad-Air1.jpg",
+            "image2": "/products/iPad-Air2.jpg",
+            "image3": "/products/iPad-Air3.jpg",
+            "image4": "/products/iPad-Air4.jpg",
             "price": 479,
             "description": "Power isn't just for the pros",
             "stock": 320,
@@ -100,7 +133,10 @@ def populate():
 
         {
             "name": "iPad Mini",
-            "image": "/products/iPad mini1.jpg",
+            "image": "/products/iPad-mini1.jpg",
+            "image2": "/products/iPad-mini2.jpg",
+            "image3": "/products/iPad-mini3.jpg",
+            "image4": "/products/iPad-mini4.jpg",
             "price": 279,
             "description": "Small stature, more talented.",
             "stock": 580,
@@ -110,6 +146,9 @@ def populate():
         {
             "name": "iPad",
             "image": "/products/iPad1.jpg",
+            "image2": "/products/iPad2.jpg",
+            "image3": "/products/iPad3.jpg",
+            "image4": "/products/iPad4.jpg",
             "price": 319,
             "description": "Like a computer. Unlike any computer",
             "stock": 950,
@@ -121,7 +160,10 @@ def populate():
     mac_products = [
         {
             "name": "MacBook Air",
-            "image": "/products/MacBook Air1.jpg",
+            "image": "/products/MacBookAir1.jpg",
+            "image2": "/products/MacBookAir-2.jpg",
+            "image3": "/products/MacBookAir-3.jpg",
+            "image4": "/products/MacBookAir-4.jpg",
             "price": 980,
             "description": "Versatile,many in one",
             "stock": 20,
@@ -131,6 +173,9 @@ def populate():
         {
             "name": "MacBook",
             "image": "/products/MacBook1.jpg",
+            "image2": "/products/MacBook2.jpg",
+            "image3": "/products/MacBook3.jpg",
+            "image4": "/products/MacBook-4.jpg",
             "price": 1249,
             "description": "Thinner takes all.",
             "stock": 200,
@@ -139,7 +184,10 @@ def populate():
 
         {
             "name": "MacBook Pro",
-            "image": "/products/MacBook Pro1.jpg",
+            "image": "/products/MacBookPro1.jpg",
+            "image2": "/products/MacBook-Pro2.jpg",
+            "image3": "/products/MacBook-Pro3.jpg",
+            "image4": "/products/MacBook-Pro4.jpg",
             "price": 1449,
             "description": "More power.More performance.More Pro",
             "stock": 2130,
@@ -149,6 +197,9 @@ def populate():
         {
             "name": "iMac",
             "image": "/products/iMac1.jpg",
+            "image2": "/products/iMac2.jpg",
+            "image3": "/products/iMac3.jpg",
+            "image4": "/products/iMac4.jpg",
             "price": 1449,
             "description": "Pretty.Epic.",
             "stock": 150,
@@ -158,6 +209,9 @@ def populate():
         {
             "name": "iMac Pro",
             "image": "/products/iMac Pro1.jpg",
+            "image2": "/products/iMac-Pro2.jpg",
+            "image3": "/products/iMac-Pro3.jpg",
+            "image4": "/products/iMac-Pro4.jpg",
             "price": 4899,
             "description": "Power to the Pro.",
             "stock": 2100,
@@ -169,6 +223,9 @@ def populate():
         {
             "name": "Cases & Covers",
             "image": "/products/XS case pink.jpg",
+            "image2": "/products/XS case blue.jpg",
+            "image3": "/products/XS case green.jpg",
+            "image4": "/products/XS case purple.jpg",
             "price": 30,
             "description": "iphone XS case",
             "stock": 5100,
@@ -177,7 +234,10 @@ def populate():
 
         {
             "name": "mac bags",
-            "image": "/products/MacBook bag1.jpg",
+            "image": "/products/MacBook-bag1.jpg",
+            "image2": "/products/MacBook-bag2.jpg",
+            "image3": "/products/MacBook-bag3.jpg",
+            "image4": "/products/MacBook-bag4.jpg",
             "price": 79.95,
             "description": "laptop bag",
             "stock": 1001,
@@ -186,7 +246,10 @@ def populate():
 
         {
             "name": "keyboard folio",
-            "image": "/products/keyboard 1.jpg",
+            "image": "/products/keyboard-1.jpg",
+            "image2": "/products/keyboard-2.jpg",
+            "image3": "/products/keyboard-3.jpg",
+            "image4": "/products/keyboard-4.jpg",
             "price": 179,
             "description": "smart keyboard folio for iPad pro",
             "stock": 550,
@@ -196,6 +259,9 @@ def populate():
         {
             "name": "iPhone XS film",
             "image": "/products/XS film1.jpg",
+            "image2": "/products/XS film2.jpg",
+            "image3": "/products/XS film3.jpg",
+            "image4": "/products/XS film4.jpg",
             "price": 14.95,
             "description": "iphone XS film",
             "stock": 1000,
@@ -205,6 +271,9 @@ def populate():
         {
             "name": "iphoneXS armband",
             "image": "/products/XS armband1.jpg",
+            "image2": "/products/XS armband2.jpg",
+            "image3": "/products/XS armband3.jpg",
+            "image4": "/products/XS armband4.jpg",
             "price": 29.95,
             "description": "iphone X armband",
             "stock": 630,
@@ -216,15 +285,21 @@ def populate():
         {
             "name": "AirPods",
             "image": "/products/AirPods1.jpg",
+            "image2": "/products/AirPods2.jpg",
+            "image3": "/products/AirPods3.jpg",
+            "image4": "/products/AirPods4.jpg",
             "price": 120,
             "description": "New generation wireless earphone, dissolve numerous and complicated.",
-            "stock": 915,
+            "stock": 9152,
             "detail": "Single click, the AirPods are automatically turned on and always connected."
         },
 
         {
             "name": "HomePod",
-            "image": "/products/homePod1.jpg",
+            "image": "/products/HomePod1.jpg",
+            "image2": "/products/homePod2.jpg",
+            "image3": "/products/HomePod3.jpg",
+            "image4": "/products/homePod4.jpg",
             "price": 319,
             "description": "Major sound, minor scale.",
             "stock": 2566,
@@ -233,7 +308,10 @@ def populate():
 
         {
             "name": "Beats Solo3",
-            "image": "/products/solo3 2.jpg",
+            "image": "/products/solo3 1.jpg",
+            "image2": "/products/solo3 2.jpg",
+            "image3": "/products/solo3 3.jpg",
+            "image4": "/products/solo3 4.jpg",
             "price": 249.95,
             "description": "Wireless HeadPhones - New Year Special Edition - Blade Grey. ",
             "stock": 1500,
@@ -243,6 +321,9 @@ def populate():
         {
             "name": "Beats Pill + Speaker",
             "image": "/products/speaker1.jpg",
+            "image2": "/products/speaker2.jpg",
+            "image3": "/products/speaker3.jpg",
+            "image4": "/products/speaker4.jpg",
             "price": 179.95,
             "description": "Undefeated Special Edition",
             "stock": 520,
@@ -252,6 +333,9 @@ def populate():
         {
             "name": "BeatsX Earphones",
             "image": "/products/earphone1.jpg",
+            "image2": "/products/earphone2.jpg",
+            "image3": "/products/earphone3.jpg",
+            "image4": "/products/earphone4.jpg",
             "price": 129.95,
             "description": "Undefeated Special Edition",
             "stock": 630,
@@ -286,18 +370,19 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat)
         for p in cat_data["products"]:
-            add_product(c, p["name"], p["image"], p["price"], p["description"], p["stock"], p["detail"])
+            add_product(c, p["name"], p["image"], p['image2'], p['image3'], p['image4'], p["price"], p["description"], p["stock"], p["detail"])
     for c in Category.objects.all():
         for p in Product.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
 
 
-def add_product(cat, name, image, price, description, stock, detail):
+def add_product(cat, name, image, image2, image3, image4, price, description, stock, detail):
     p = Product.objects.get_or_create(category=cat, name=name, price=price, stock=stock)[0]
     p.image = image
-    # p.price=price
+    p.image2 = image2
+    p.image3 = image3
+    p.image4 = image4
     p.description = description
-    # p.stock=stock
     p.detail = detail
     p.save()
     return p

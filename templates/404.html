@@ -1,0 +1,19 @@
+{% extends 'base_b.html' %}
+{% block body %}
+    <div id="error-page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 m-auto text-center">
+                <div class="error-content-centered d-flex align-items-center">
+                    <div class="error-page-content-wrap">
+                        <h2>404</h2>
+                        <h3>PAGE NOT FOUND</h3>
+                        <p>Sorry but the page you are looking for does not exist, have been removed, name changed or is permanently unavailable.</p>
+                        <a href="{% url 'product:index' %}" class="btn">Back to Home Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

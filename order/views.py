@@ -24,9 +24,18 @@ def order(request):
         total_price = total_price + float(cart.count) * float(cart.product.price)
 
     total_price = float('%0.2f' % total_price)
-    trans_cost = 0  # delivery is free for now!
+    trans_cost = 0  # delivery is free for now. maybe in the future we will raise the delivery fee so we make this variable.
     total_trans_price = trans_cost + total_price
+    if not hasattr(request.user, 'userprofile'):
+        address = 0
+    else:
+        if not hasattr(user.userprofile, 'address'):
+            address = 0
+        else:
+            address = 1
+
     context = {
+        'address':address,
         'title': 'Submit order',
         'page_name': 1,
         'user': user,
@@ -42,9 +51,12 @@ def order(request):
 @login_required
 # @transaction.atomic()
 def order_handle(request):
+    user_id = request.user.id
+    # if not hasattr(request.user, 'userprofile'):
+    #     return
     tran_id = transaction.savepoint()
     cart_ids = request.POST.get('cart_ids')
-    user_id = request.user.id
+
     data = {}
     try:
         order_info = Order()  # make a new order object
@@ -80,6 +92,7 @@ def order_handle(request):
     return JsonResponse(data)
 
 
+# We are not including real payment function in this project
 @login_required
 def pay(request):
     pass

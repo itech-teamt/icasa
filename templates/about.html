@@ -2,43 +2,77 @@
 {% load staticfiles %}
 
 {% block body %}
+  <!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
     <div class="container">
-    <div>
-        <div style="margin-top: 60px; text-align: center; margin-left: auto; font-size:35px; margin-right: auto;">About Us</div>
-        <div style="margin-top: 60px">
-            <div style="margin-top: 0px; height: 150px">
-                <div style="float: left; padding-left: 70px; width: 45%; ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</div>
-                <div style="float: left; width: 10%; text-align: center; height: 50px; line-height: 50px; color: #75b12f; font-size: 20px">01</div>
-                <div style="float: left; padding-right: 70px; width: 45%; ">Temporibus autem quibusdam officiis debitis who are so beguiled and demoralized by the charms of pleasure the moment, desire, that they cannot foresee the pain.</div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="{% url 'product:index' %}">Home</a></li>
+                        <li><a href="#" class="active">About Us</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <div style="margin-top: 10px; height: 150px">
-                <div style="float: left; padding-left: 70px; width: 45%; ">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora </div>
-                <div style="float: left; width: 10%; text-align: center; height: 50px; line-height: 50px; color: #75b12f; font-size: 20px">02</div>
-                <div style="float: left; padding-right: 70px;width: 45%; ">Nam libero tempore soluta eligendi cumque But in certain circumstances and owing to the claims of duty or the obligations it will frequently occur that pleasures.</div>
-            </div>
-
         </div>
-        <div style="margin-top: 60px; text-align: center; margin-left: auto; font-size:35px; margin-right: auto;">Our Team</div>
-        <div style="margin-top: 60px">
-            <div style="margin-left: 70px; width: 200px; height: 300px; float: left; border: 1px #afb2b5 solid">
-                <div style="height: 80%; width: 100%"><img src="{% static '/assets/img/zhou.jpeg' %}" style="width: 100%; height: 100%"></div>
-                <div style="height: 20%; width: 100%; line-height: 60px; text-align: center; font-size: 24px">Junjie Zhou</div>
-            </div>
-            <div style="margin-left: 100px; width: 200px; height: 300px; float: left; border: 1px #afb2b5 solid">
-                <div style="height: 80%; width: 100%"><img src="{% static '/assets/img/xu.jpeg' %}" style="width: 100%; height: 100%"></div>
-                <div style="height: 20%; width: 100%; line-height: 60px; text-align: center; font-size: 24px">Jing Xu</div>
-            </div>
-            <div style="margin-left: 100px; width: 200px; height: 300px; float: left; border: 1px #afb2b5 solid">
-                <div style="height: 80%; width: 100%"><img src="{% static '/assets/img/hua.JPG' %}" style="width: 100%; height: 100%"></div>
-                <div style="height: 20%; width: 100%; line-height: 60px; text-align: center; font-size: 24px">Jinghua yan</div>
-            </div>
-             <div style="margin-left: 100px; width: 200px; height: 300px; float: left; border: 1px #afb2b5 solid">
-                <div style="height: 80%; width: 100%"><img src="{% static '/assets/img/wang.JPG' %}" style="width: 100%; height: 100%"></div>
-                <div style="height: 20%; width: 100%; line-height: 60px; text-align: center; font-size: 24px">Jintao Wang</div>
-             </div>
-        </div>
-        <div style="margin-top: 350px; width: 1000px; background: red">
     </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <!-- About Page Content Start -->
+        <div class="row">
+            <!-- About Text Start -->
+            <div class="col-lg-6 order-last order-lg-first">
+                <div class="about-text-wrap">
+                    <h2><span>About Us</span>ITECH 2019 Team T</h2>
+                    <p>It is our Team Project</p>
+
+                    <p>iCasa is a shopping website for electronic products. We provide the latest and most complete apple products.</p>
+
+                    <p>Any product you are interested in can be searched here.It is equipped with the most cutting-edge technologies and latest trends of apple and can meet the needs of all kinds of people for electronic products.</p>
+                </div>
+            </div>
+            <!-- About Text End -->
+
+            <!-- Location Start -->
+            <div class="col-lg-5 col-md-10 m-md-auto ml-auto">
+                <h2>Where to Find Us</h2>
+                <div class="product-image-title" id="map" >
+
+                </div>
+            </div>
+            <!-- Location End -->
         </div>
+        <!-- About Page Content End -->
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+    <!-- Start Google Maps API -->
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 55.8736304, lng: -4.293658,},
+          zoom: 16
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: 55.8736304, lng: -4.293658,},
+            map: map,
+  });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTy4g0m9EWkQJCDvOGTCrOqGFQo_61zFY&callback=initMap"
+    async defer></script>
+    <style>
+        /* Always define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+          width: 400px;
+      }</style>
+    <!-- End Google Maps API -->
 {% endblock %}

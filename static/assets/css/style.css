@@ -88,11 +88,12 @@ figure {
   margin: 0; }
 
 input {
-  border: none;
+  border: 1px solid #6495ED;
+  border-radius: 4px;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
-  box-shadow: none; }
+  box-shadow: 0 0 2px #000 inset;  }
 
 img {
   max-width: 100%; }

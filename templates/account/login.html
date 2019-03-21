@@ -3,9 +3,12 @@
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
 {% block headers %}
+{% load widget_tweaks %}
     <h3 class="my-1 text-info">Sign in</h3>
+
 {% endblock %}
 {% block content %}
+
 <form class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     <p class="pull-right">Not a member?<a href="{{ signup_url }}"> Sign up!</a></p><br>
@@ -29,44 +32,8 @@
                                 {% endif %}
                             </div>
 </form>
+
 {% endblock %}
 
 {% block loginlink %}
 {% endblock %}
-
-
-{#    <form class="login" action="{% url 'account_login' %}" method="POST">#}
-{#    {% csrf_token %}#}
-{#    {% for hidden in form.hidden_fields %}#}
-{#        <div class="single-input-item">#}
-{#            {{ hidden }}#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#    <p>Not a member?<a href="{{ signup_url }}"> Sign up!</a></p>#}
-{#       {% for field in form.visible_fields %}#}
-{#         <div class="form-group">#}
-{#               <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
-{#               {{ field|add_class:'form-control' }}#}
-{#               {% for error in field.errors %}#}
-{#                 <span class="help-block">{{ error }}</span>#}
-{#               {% endfor %}#}
-{#             </div>#}
-{#       {% endfor %}#}
-{#    {% if redirect_field_value %}#}
-{#        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
-{#    {% endif %}#}
-{#    <div class="single-input-item">#}
-{#        <div class="login-reg-form-meta d-flex align-items-center justify-content-between">#}
-{#            <div class="remember-meta">#}
-{#                <div class="custom-control custom-checkbox">#}
-{#                    <input type="checkbox" class="custom-control-input" id="rememberMe">#}
-{#                    <label class="custom-control-label" for="rememberMe">Remember Me</label>#}
-{#                </div>#}
-{#            </div>#}
-{#            <a href="{% url 'account_reset_password' %}" class="forgot-pwd">Forgot Password?</a>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="single-input-item">#}
-{#        <button class="btn" type="submit">Login</button>#}
-{#    </div>#}
-{#</form>#}

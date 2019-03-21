@@ -107,11 +107,7 @@
                 price = $(this).children('.pro-price').text();
                 //get subtotal
                 total0=parseFloat(count)*parseFloat(price);
-                //show subtotal
-{#                checked = $(this).prev().prev().prev().prev().prev().prev().find('input').attr('checked')#}
-{#                if(checked == 'checked')#}
-{#                {}#}
-{#                    $(this).text(total0.toFixed(2));#}
+
                 //add to order total
                 total1 += total0;
                 total_count++;

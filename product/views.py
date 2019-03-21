@@ -150,16 +150,18 @@ def search(request):
         search_status = False
         products_list = Product.objects.all().order_by("click")
 
-    paginator = Paginator(products_list, 4)
-    page = paginator.page(int(pindex))
+    # paginator = Paginator(products_list,9)
+    # page = paginator.page(1)
 
     context = {
         'title': 'Search list',
         'search_status': search_status,
         'guest_cart': guest_cart,
         'cart_num': cart_num,
-        'page': page,
-        'paginator': paginator,
+        'products_list': products_list,
+        # 'page': page,
+        # 'paginator': paginator,
+        'q':search_keywords,
     }
     return render(request, 'product/search.html', context)
 

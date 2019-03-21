@@ -9,7 +9,7 @@
                 <div class="col-md-5 col-lg-6">
                     <div class="preheader-contact-info d-flex align-items-center justify-content-between justify-content-md-start">
                         <div class="single-contact-info">
-                            <a class="welcome-msg">
+                            <a class="welcome-msg" style="color: #1dd983">
                                 <strong>Welcome to iCasa!</strong>
                             </a>
                         </div>
@@ -18,7 +18,7 @@
 
                 <div class="col-md-7 col-lg-6 mt-xs-10">
                     {% if user.is_authenticated %}
-                    <div class="login_btn fl pull-right" style="color: #202326;">Hi：<em>{{ user.last_name}} {{ user.first_name }}</em>
+                    <div class="login_btn fl pull-right" style="color: #d2d2d2;">Hi：<em>{{ user.first_name }} {{ user.last_name}} </em>
                         <span>  &ensp;</span>
                         <em><a href="{% url "account_logout" %}">Logout</a></em>
                         <em>&emsp;</em>
@@ -56,7 +56,8 @@
                     <div class="search-box-wrap">
                         <p class="search-form d-flex" href="javascript:;" method="get">
                             <input id="searchinput" type="search" name="search" placeholder="Search products here"/>
-                            <button class="btn btn-search" onclick="javascript:;"><img src="{% static 'assets/img/icons/icon-search.png' %}"
+                            <button class="btn btn-search" onclick="javascript:;">
+                                <img src="{% static 'assets/img/icons/icon-search.png' %}"
                                                                 alt="Search Icon"/>
                             </button>
                         <p>
@@ -177,37 +178,37 @@
                 <div class="brand-logo-carousel owl-carousel">
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-1.png' %}" alt="brand"></a>
+                        <a href="https://www.apple.com"><img src="{% static 'assets/img/logo-1.png' %}" alt="logo1"></a>
                     </div>
                     <!-- Single Brand Logo End -->
 
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-2.png' %}" alt="brand"></a>
+                        <a href="https://www.gla.ac.uk/"><img src="{% static 'assets/img/logo-2.png' %}" alt="logo2"></a>
                     </div>
                     <!-- Single Brand Logo End -->
 
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-3.png' %}" alt="brand"></a>
+                        <a href="https://github.com/WangJintaoWJT"><img src="{% static 'assets/img/logo-3.png' %}" alt="logo3"></a>
                     </div>
                     <!-- Single Brand Logo End -->
 
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-4.png' %}" alt="brand"></a>
+                        <a href="https://github.com/zhoujunjiedan"><img src="{% static 'assets/img/logo-4.png' %}" alt="logo4"></a>
                     </div>
                     <!-- Single Brand Logo End -->
 
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-5.png' %}" alt="brand"></a>
+                        <a href="https://github.com/JoseYan"><img src="{% static 'assets/img/logo-5.png' %}" alt="logo5"></a>
                     </div>
                     <!-- Single Brand Logo End -->
 
                     <!-- Single Brand Logo Start -->
                     <div class="single-brand-item">
-                        <a href="#"><img src="{% static 'assets/img/logo-6.png' %}" alt="brand"></a>
+                        <a href="https://github.com/23524005x"><img src="{% static 'assets/img/logo-6.png' %}" alt="logo6"></a>
                     </div>
                     <!-- Single Brand Logo End -->
                 </div>
@@ -216,130 +217,4 @@
     </div>
 </div>
 {% endblock %}
-<!--== End Brand Carousel Area ==-->
 
-<!--== Start Newsletter Area ==-->
-<!--== End Newsletter Area ==-->
-
-<!--== Start Footer Area ==-->
-<footer id="footer-area">
-    <!-- Footer Widget Area Start -->
-    <div class="footer-widget-area">
-        <div class="container">
-            <div class="footer-widget-content">
-                <div class="row">
-                    <!-- Single Widget-item Start -->
-                    <!-- Single Widget-item End -->
-
-                    <!-- Single Widget-item Start -->
-                    <!-- Single Widget-item End -->
-
-                    <!-- Single Widget-item Start -->
-                    <!-- Single Widget-item End -->
-
-                    <!-- Single Widget-item Start -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-widget-item">
-                            <h3 class="widget-title">Contact Us</h3>
-                            <div class="widget-body">
-                                <div class="contact-info">
-                                    <div class="single-contact-info">
-                                    <span class="contact-icon">
-                                        <i class="fa fa-home"></i>
-                                    </span>
-                                        <a href="mailto:your@example.com" class="contact-text">
-                                            <strong>Address:</strong> University of Glasgow
-                                        </a>
-                                    </div>
-                                    <div class="single-contact-info">
-                                    <span class="contact-icon">
-                                        <i class="fa fa-phone"></i>
-                                    </span>
-                                        <a href="mailto:your@example.com" class="contact-text">
-                                            <strong>Phone:</strong> (+44) 1234-567890
-                                        </a>
-                                    </div>
-                                    <div class="single-contact-info">
-                                    <span class="contact-icon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                        <a href="mailto:your@example.com" class="contact-text">
-                                            <strong>Email:</strong> teamt@itech.it
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Widget-item End -->
-                    <!-- Single Widget-item Start -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-widget-item">
-                            <h3 class="widget-title">Our Team</h3>
-                            <div class="widget-body">
-                                <ul class="footer-list">
-                                    <li><a href="#">Jinghua Yan</a></li>
-                                    <li><a href="#">Jintao Wang</a></li>
-                                    <li><a href="#">Jing Xu</a></li>
-                                    <li><a href="#">Junjie Zhou</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Widget-item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Widget Area End -->
-
-    <!-- Footer Bottom Area -->
-    <div class="footer-bttom-area">
-        <div class="container">
-            <div class="row">
-                <!-- Copyright Text Area -->
-                <div class="col-md-6 m-auto text-center text-md-left order-last order-md-first">
-                    <p>Copyright &copy; 2019.ITECH Team T All rights reserved.</p>
-                </div>
-                <!-- Copyright Text Area -->
-
-                <!-- Payment Method Area -->
-                <div class="col-md-6 m-auto text-center text-md-right">
-                    <div class="payment-support">
-                        <img src="{% static 'assets/img/payment.png' %}" alt="Payment" class="d-inline-block" />
-                    </div>
-                </div>
-                <!-- Payment Method Area -->
-            </div>
-        </div>
-    </div>
-    <!-- Footer Bottom Area -->
-</footer>
-<!--== End Footer Area ==-->
-
-<!-- Scroll to Top Start -->
-<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
-<!-- Scroll to Top End -->
-
-<!--== Product Quick View Modal Area Wrap ==-->
-<!--== Product Quick View Modal Area End ==-->
-
-
-<!--=======================Javascript============================-->
-<!--=== Jquery Min Js ===-->
-<script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
-<!--=== Jquery Migrate Min Js ===-->
-<script src="{% static 'assets/js/vendor/jquery-migrate-1.4.1.min.js' %}"></script>
-<!--=== Popper Min Js ===-->
-<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
-<!--=== Bootstrap Min Js ===-->
-<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
-<!--=== Ajax Mail Js ===-->
-<script src="{% static 'assets/js/ajax-mail.js' %}"></script>
-<!--=== Plugins Min Js ===-->
-<script src="{% static 'assets/js/plugins.js' %}"></script>
-
-<!--=== Active Js ===-->
-<script src="{% static 'assets/js/active.js' %}"></script>
-</body>
-</html>
