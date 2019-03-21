@@ -71,7 +71,7 @@ def product_list(request, cid, pindex, sort):
         products_list = Product.objects.filter(category_id=int(cid)).order_by('-click')
 
     # make an object of paginator
-    paginator = Paginator(products_list, 4)
+    paginator = Paginator(products_list, 3)
     # return a paginator containing relative information
     page = paginator.page(int(pindex))
     context = {
@@ -128,8 +128,6 @@ def detail(request, pid):
 def cart_count(request):
     if not request.user.id is None:
         return Cart.objects.filter(user_id=request.user.id).count()
-    # if 'user_id' in request.session:
-    #     return Cart.objects.filter(user_id=request.session['user_id']).count
     else:
         return 0
 
@@ -142,10 +140,6 @@ def search(request):
     pindex = request.GET.get('pindex', 1)
     search_status = True
     cart_num, guest_cart = 0, 0
-    # user_id = request.session['user_id']
-    # if user_id:
-    #     guest_cart = 1
-    #     cart_num = Cart.objects.filter(user_id=int(user_id)).count()
 
     if search_keywords:
         products_list = Product.objects.filter(
@@ -168,3 +162,7 @@ def search(request):
         'paginator': paginator,
     }
     return render(request, 'product/search.html', context)
+
+
+def about(request):
+    return render(request, 'about.html')

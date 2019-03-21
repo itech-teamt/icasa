@@ -4,6 +4,7 @@
     <script type="text/javascript">
 
 {#  make total price change automatically#}
+
     function plus() {
         num = parseFloat($('.num_show').val());
         $('.num_show').val(num+1);
@@ -39,6 +40,24 @@
              {#$('add_cart').attr('href', '/cart/add'+$('id').val())#}
 
         });
+
+        $('.plus').click(function () {
+
+            var n = parseFloat($('#num_show').val());
+            $('#num_show').val(n+1);
+            $('#num_show').blur();
+        });
+        $('.minus').click(function () {
+            var n = parseFloat($('#num_show').val());
+            if(n>1)
+            {
+                $('#num_show').val(n-1);
+                $('#num_show').blur();
+            }
+{#quantity cannot be less than 1#}
+
+        });
+
     });
     </script>
 
@@ -53,7 +72,6 @@
                 <div class="page-breadcrumb">
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
                         <li><a href="#" class="active">{{ product.name }}</a></li>
                     </ul>
                 </div>
@@ -109,7 +127,9 @@
                                 <div class="product-quantity d-flex align-items-center">
                                     <div class="quantity-field">
                                         <label for="qty">Qty</label>
+                                        <a href="javascript:;" class="plus fl">+</a>
                                         <input type="number" id="num_show" min="1" max="100" value="1" />
+                                        <a href="javascript:;" class="minus fl">-</a>
                                     </div>
                                     {% if user.is_authenticated %}
                                         <a id="add_cart" class="btn btn-cart-large" onclick="window.location.href='javascript:;'"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
@@ -136,7 +156,7 @@
                                 <!-- Single Product tab Content -->
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="description">
-                                        <p>{{ product.detail }}</p>
+                                        <h2>{{ product.detail }}</h2>
 
                                     </div>
                                 </div>
@@ -176,7 +196,7 @@
                 "fast", function () {
                     $(".add_jump").fadeOut('fast', function () {
                             count = $('.num_show').val();
-                            {#alert(count);#}
+                            alert(count);
                             $('#show_count').html(count);
                 });
 
@@ -185,6 +205,8 @@
             $.get('/cart/add{{ product.id }}_'+num+'/',function (data) {
                 $('#show_count').text(data.count);
             });
+            alert('Added this item to your cart');
+            $('#num_show').val(1);
         });
 		$.get('/cart/',function (data) {
                 {#alert(data.count);#}

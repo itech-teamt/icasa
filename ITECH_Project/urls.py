@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include
 
 urlpatterns = [
+
     url(r'admin/', admin.site.urls),
     url(r'^', include(('product.urls', 'product'), namespace='products')),
     url(r'^user/', include(('user.urls', 'user'), namespace='user')),

@@ -24,7 +24,7 @@ def order(request):
         total_price = total_price + float(cart.count) * float(cart.product.price)
 
     total_price = float('%0.2f' % total_price)
-    trans_cost = 10  # delivery fee
+    trans_cost = 0  # delivery is free for now!
     total_trans_price = trans_cost + total_price
     context = {
         'title': 'Submit order',

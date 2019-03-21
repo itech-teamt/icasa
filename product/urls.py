@@ -9,4 +9,5 @@ urlpatterns = [
     url('^list(\d+)_(\d+)_(\d+)/$', views.product_list, name="product_list"),
     url('^(\d+)/$', views.detail, name="detail"),
     url(r'^search/', views.search, name="search"),
+    url(r'^about/$', views.about, name="about"),
 ]

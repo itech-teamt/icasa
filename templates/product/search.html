@@ -1,63 +1,106 @@
 {% extends 'base.html' %}
-{% block center_body %}
-    <div class="navbar_con">
-		<div class="navbar clearfix">
-			<div class="subnav_con fl">
-				<h1>All Categories</h1>
-				<span></span>
-				<ul class="subnav">
-					<li><a href="/list1_1_1/" class="iphone">iPhone</a></li>
-					<li><a href="/list2_1_1/" class="ipad">iPad</a></li>
-					<li><a href="#" class="mac">Mac</a></li>
-					<li><a href="#" class="watch">Watch</a></li>
-					<li><a href="#" class="accessories">Accessories</a></li>
-					<li><a href="#" class="other">Other</a></li>
-				</ul>
-			</div>
-			<ul class="navlist fl">
-				<li><a href="{% url "product:index" %}">Home</a></li>
-				<li class="interval">|</li>
-				<li><a href="">News</a></li>
-				<li class="interval">|</li>
-				<li><a href="">Contact Us</a></li>
-			</ul>
-		</div>
-	</div>
 
-	<div class="breadcrumb">
-	</div>
-
-    <div class="main_wrap clearfix">
-        <ul class="goods_type_list clearfix">
-            {%  for item in page %}
-            <li>
-                <a href="/{{ item.id }}/"><img src="/static/{{ item.image }}/"></a>
-                <h4><a href="/{{ item.id }}/">{{ item.name }}</a></h4>
-                <div class="operate">
-                    <span class="prize">￥{{ item.price }}</span>
-                    <a href="/cart/add{{ item.id }}_1/" class="add_goods" title="加入购物车"></a>
+{% block body %}
+<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="{% url 'product:index' %}">Home</a></li>
+                        <li><a class="active">Search Result</a></li>
+                    </ul>
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
-        <div class="pagenation">
-{#                if it has previous pages#}
-            {% if page.has_previous %}
-                <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ page.previous_page_number }}">Prev</a>
-            {% endif %}
-
-            {% for pindex in paginator.page_range %}
-                {% if pindex == page.number %}
-                    <a href="#" class="active">{{ pindex }}</a>
-                {% else %}
-                    <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ pindex }}">{{ pindex }}</a>
-                {% endif %}
-            {% endfor %}
-
-{#                if it has next page#}
-            {% if page.has_next %}
-                <a href="{% url "user:search" %}?q={{ query }}&amp;page={{ page.next_page_number }}">Next></a>
-            {% endif %}
+            </div>
         </div>
     </div>
-{% endblock center_body %}
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- Start Shop Page Content -->
+            <div class="col-lg-12">
+                <div class="shop-page-content-wrap">
+                    <div class="products-settings-option d-block d-md-flex">
+                        <div class="product-cong-left d-flex align-items-center">
+                            <ul class="product-view d-flex align-items-center">
+                                <li class="box-gird current"><i class="fa fa-th"></i></li>
+                                <li class="list"><i class="fa fa-list-ul"></i></li>
+                            </ul>
+                        </div>
+
+                        <div class="product-sort_by d-flex align-items-center mt-3 mt-md-0">
+                            <label for="sort">Sort By:</label>
+                            <select name="sort" id="sort">
+                                <option value="Position">Default</option>
+                                <option value="Price Ascen">Price low to high</option>
+                                <option value="Price Decen">Hot</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="shop-page-products-wrap">
+                        <div class="products-wrapper">
+                            <div class="row">
+                                {% for p in page %}
+                                <!-- Single Product Start -->
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="single-product-item">
+                                        <figure class="product-thumb">
+                                            <a href="/{{ p.id }}/"><img src="/static/{{ p.image }}/"
+                                                                               alt="Product"></a>
+                                            <a href="#" class="btn btn-round btn-cart" title="Quick View"
+                                               data-toggle="modal" data-target="#quickView"><i
+                                                    class="fa fa-eye"></i></a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <h2 class="product-title"><a href="/{{ p.id }}/">{{ p.name }}</a></h2>
+                                            <span class="product-price">{{ p.price }}</span>
+
+                                            <p class="pro-desc">{{ p.description }}</p>
+
+                                            <div class="product-meta">
+                                                <a href="/cart/add{{ p.id }}_1/" class="btn btn-round btn-cart" title="Add to Cart"><i
+                                                        class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single Product End -->
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="products-settings-option d-block d-md-flex">
+                        <nav class="page-pagination">
+                            <ul class="pagination">
+                                {% if page.has_previous %}
+                                <li><a href="/list{{ category.id }}_{{ page.previous_page_number }}_{{ sort }}" aria-label="Previous">&laquo;</a></li>
+                                {% endif %}
+                                {% for pindex in paginator.page_range %}
+                                    {% if pindex == page.number %}
+                                <li><a class="active" href="/list{{ category.id }}_{{pindex}}_{{ sort }}">{{ pindex }}</a></li>
+                                    {% else %}
+                               <li><a href="/list{{ category.id }}_{{pindex}}_{{ sort }}">{{ pindex }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                             {% if page.has_next %}
+                                <li><a href="/list{{ category.id }}_{{ page.next_page_number }}_{{ sort }}" aria-label="Next">&raquo;</a></li>
+                            {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- End Shop Page Content -->
+        </div>
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+{% endblock body %}

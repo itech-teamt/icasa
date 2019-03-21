@@ -60,14 +60,15 @@ def myaccount(request):
 
     user_id = request.user.id
     orders_list = Order.objects.filter(user_id=int(user_id)).order_by('-date')
-    paginator = Paginator(orders_list, 3)
+    paginator = Paginator(orders_list, 2)
     page = paginator.page(1)
 
     context = {'uform': uform,
                'pform': pform,
                'user': user,
                'paginator': paginator,
-               'page': page}
+               'page': page,
+               'orders_list':orders_list,}
 
     return render(request, 'account/profile.html/', context)
 

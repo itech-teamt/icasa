@@ -18,10 +18,10 @@
 
                 <div class="col-md-7 col-lg-6 mt-xs-10">
                     {% if user.is_authenticated %}
-                    <div class="login_btn fl pull-right">Hi：<em>{{ user.last_name}} {{ user.first_name }}</em>
-                        <span>|</span>
+                    <div class="login_btn fl pull-right" style="color: #202326;">Hi：<em>{{ user.last_name}} {{ user.first_name }}</em>
+                        <span>  &ensp;</span>
                         <em><a href="{% url "account_logout" %}">Logout</a></em>
-                        <em> | </em>
+                        <em>&emsp;</em>
                         <em><a href="{% url 'user:myaccount' %}">My Account</a></em>
                     </div>
                     {% else %}
@@ -54,14 +54,24 @@
                 <!-- Search Box Area Start -->
                 <div class="col-8 col-md-7 col- m-auto ">
                     <div class="search-box-wrap">
-                        <form class="search-form d-flex" action="#" method="get">
-                            <input type="search" name="search" placeholder="type and hit enter"/>
-                            <button class="btn btn-search"><img src="{% static 'assets/img/icons/icon-search.png' %}"
+                        <p class="search-form d-flex" href="javascript:;" method="get">
+                            <input id="searchinput" type="search" name="search" placeholder="Search products here"/>
+                            <button class="btn btn-search" onclick="javascript:;"><img src="{% static 'assets/img/icons/icon-search.png' %}"
                                                                 alt="Search Icon"/>
                             </button>
-                        </form>
+                        <p>
                     </div>
                 </div>
+                        <script>
+                            $(function () {
+
+                                $('.btn-search').click(function () {
+                                    {#                    alert('ok');#}
+                                    {#q = $('#searchinput').val();#}
+                                    location.href = '{% url "product:search" %}?q='+$('#searchinput').val()+'&page=1'
+                                })
+                            })
+                        </script>
                 <!-- Search Box Area End -->
 
                 <!-- Mini Cart Area Start -->
@@ -91,104 +101,39 @@
                         </button>
                         <ul class="category-list-menu">
                             <li class="category-item-parent dropdown-show">
-                                <a href="#" class="category-item arrow-toggle">
-                                    <img src="{% static 'assets/img/icons/desktop.png' %}" alt="Computer"/>
+                                <a href="/list1_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/iphone.png' %}" alt="iPhone"/>
                                     <span>iPhone</span>
                                 </a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Laptop</a>
-                                        <ul>
-                                            <li><a href="#">Has Laptop Price</a></li>
-                                            <li><a href="#">Has Laptop Ram</a></li>
-                                            <li><a href="#">Has Laptop Rom</a></li>
-                                            <li><a href="#">Has Laptop SSD</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Desktop</a>
-                                        <ul>
-                                            <li><a href="#">Has Laptop Price</a></li>
-                                            <li><a href="#">Has Laptop Ram</a></li>
-                                            <li><a href="#">Has Laptop Rom</a></li>
-                                            <li><a href="#">Has Laptop SSD</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Notebook</a>
-                                        <ul>
-                                            <li><a href="#">Has Laptop Price</a></li>
-                                            <li><a href="#">Has Laptop Ram</a></li>
-                                            <li><a href="#">Has Laptop Rom</a></li>
-                                            <li><a href="#">Has Laptop SSD</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
 
                             <li class="category-item-parent dropdown-show">
-                                <a href="#" class="category-item arrow-toggle">
-                                    <img src="{% static 'assets/img/icons/mobile.png' %}" alt="Mobile"/>
+                                <a href="/list2_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/ipad.png' %}" alt="iPad"/>
                                     <span>iPad</span>
                                 </a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Sumsang</a>
-                                        <ul>
-                                            <li><a href="#">Sumsang S6</a></li>
-                                            <li><a href="#">Sumsang S7</a></li>
-                                            <li><a href="#">Sumsang Prime</a></li>
-                                            <li><a href="#">Sumsang A6</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Ziaomi</a>
-                                        <ul>
-                                            <li><a href="#">Ziaomi A2 Pro</a></li>
-                                            <li><a href="#">Ziaomi MIX 2</a></li>
-                                            <li><a href="#">Ziaomi F1</a></li>
-                                            <li><a href="#">Ziaomi Prime</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Jamila</a>
-                                        <ul>
-                                            <li><a href="#">Jamila G100</a></li>
-                                            <li><a href="#">Jamila i120</a></li>
-                                            <li><a href="#">Jamila i15</a></li>
-                                            <li><a href="#">Jamila L62</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Nakoa</a>
-                                        <ul>
-                                            <li><a href="#">Nakoa Lamia 820</a></li>
-                                            <li><a href="#">Nakoa 888 Pro</a></li>
-                                            <li><a href="#">Nakoa 81 Sirocco</a></li>
-                                            <li><a href="#">Nakoa Lamia 1520</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="{% static 'assets/img/icons/camera.png' %}" alt="Camera"/>
+                                <a href="/list3_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/mac.png' %}" alt="Mac"/>
                                     <span>Mac</span>
                                 </a>
                             </li>
                             <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="{% static 'assets/img/icons/fan.png' %}" alt="Camera"/>
+                                <a href="/list4_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/watch.png' %}" alt="Watch"/>
                                     <span>Watch</span>
                                 </a>
                             </li>
                             <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="{% static 'assets/img/icons/games.png' %}" alt="Camera"/>
+                                <a href="/list5_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/accessories.png' %}" alt="Accessories"/>
                                     <span>Accessories</span>
                                 </a>
                             </li>
                             <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="{% static 'assets/img/icons/tv.png' %}" alt="Camera"/>
+                                <a href="/list6_1_1/" class="category-item">
+                                    <img src="{% static 'assets/img/icons/other.png' %}" alt="Other"/>
                                     <span>Other</span>
                                 </a>
                             </li>
@@ -203,7 +148,7 @@
                         <nav class="mainmenu">
                             <ul class="main-navbar clearfix">
                                 <li><a href="{% url 'product:index' %}">Home</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="{% url 'product:about' %}">About Us</a></li>
                             </ul>
                         </nav>
                     </div>
