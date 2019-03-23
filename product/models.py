@@ -27,7 +27,7 @@ class Product(models.Model):
     click = models.IntegerField(default=0, verbose_name="the number of clicks of a product")
     description = models.CharField(max_length=200, verbose_name="product description")
     stock = models.IntegerField(verbose_name="products in stock")
-    detail = HTMLField(max_length=200, verbose_name="product details")
+    detail = HTMLField(max_length=3000, verbose_name="product details")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="product category")
 
     class Meta:
