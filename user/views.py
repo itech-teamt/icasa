@@ -70,7 +70,7 @@ def myaccount(request):
                'page': page,
                'orders_list':orders_list,}
 
-    return render(request, 'account/profile.html/', context)
+    return render(request, 'account/profile.html', context)
 
 
 # @login_required
